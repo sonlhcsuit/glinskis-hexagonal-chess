@@ -789,7 +789,6 @@ func _ready():
 	$Notification.text="NOW IS THE WHITE TURN"
 	pass # Replace with function body.
 
-
 func _on_TextureButton_pressed():
 	get_tree().change_scene("res://Scenes/IntroWindown.tscn")
 	pass # Replace with function body.

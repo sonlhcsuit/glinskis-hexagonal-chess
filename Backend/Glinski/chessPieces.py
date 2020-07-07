@@ -7,18 +7,19 @@ class Pieces(object):
         self.type = type  # string
         self.team = team  # string
         self.moveable = []
+        coefficent = 1 if team==WHITE else -1
         if (type == PAWN):
-            self.value = 10
+            self.value = coefficent*10
         elif type == KNIGHT:
-            self.value = 30
+            self.value = coefficent*30
         elif type == BISHOP:
-            self.value = 40
+            self.value = coefficent*40
         elif type == ROOK:
-            self.value = 50
+            self.value = coefficent*50
         elif type == QUEEN:
-            self.value = 90
+            self.value = coefficent*90
         elif type == KING:
-            self.value = 900
+            self.value = coefficent*900
 
     def valid_position(self, position):
         if position[0] == 'A' or position[0] == 'I':
@@ -33,10 +34,12 @@ class Pieces(object):
             return int(position[1:]) <= 10 and int(position[1:]) >= 1
         else:
             return False
-
+    def get_position(self):
+        return self.position
     def get_value(self):
         return self.value
-
+    def get_team(self):
+        return self.team
     def get_type(self):
         return self.type
 
@@ -97,7 +100,10 @@ class Pieces(object):
         return self.get_positon_around(position)[5]
     def generate_moves(self,position):
         return position
+    def get_info(self):
+        return (self.team,self.type,self.position,self.value)
     def __str__(self):
+        # return self.get_info()
         return '{} {} {} {}'.format(self.team, self.type, self.position, self.value)
 
     def __repr__(self):
@@ -108,13 +114,24 @@ class Pawn(Pieces):
         super(Pawn, self).__init__(team, PAWN, position)
 
     def generate_pawn_moves(self,position):
-        lt = self.get_leftTop_position(position)
-        t = self.get_top_position(position)
-        rt = self.get_rightTop_position(position)
-        self.moveable = [lt, t, rt]
-        return self.moveable
-    def generate_moves(self,position):
-        return self.generate_pawn_moves(position)
+        if(self.team == WHITE):
+            lt = self.get_leftTop_position(position)
+            t = self.get_top_position(position)
+            rt = self.get_rightTop_position(position)
+            self.moveable = [[t],[lt, rt]]
+            return self.moveable
+        elif self.team == BLACK:
+            ld = self.get_leftDown_position(position)
+            d = self.get_down_position(position)
+            rd = self.get_rightDown_position(position)
+            self.moveable = [[d], [ld, rd]]
+            return self.moveable
+
+    def generate_moves(self,position=None):
+        if(position is None):
+            return self.generate_pawn_moves(self.position)
+        else:
+            return self.generate_pawn_moves(position)
 
 class Knight(Pieces):
     def __init__(self, team, position):
@@ -153,8 +170,11 @@ class Knight(Pieces):
         move.append(self.get_top_position(tempPos))
         move.append(self.get_rightTop_position(tempPos))
         return move
-    def generate_moves(self,position):
-        return self.generate_knight_moves(position)
+    def generate_moves(self,position=None):
+        if (position is None):
+            return self.generate_knight_moves(self.position)
+        else:
+            return self.generate_knight_moves(position)
 
 class Bishop(Pieces):
     def __init__(self, team, position):
@@ -216,15 +236,19 @@ class Bishop(Pieces):
 
     def generate_bishop_moves(self, position):
         move = []
-        move += self.bishop_bottom_left(position)
-        move += self.bishop_middle_left(position)
-        move += self.bishop_top_left(position)
-        move += self.bishop_top_right(position)
-        move += self.bishop_middle_right(position)
-        move += self.bishop_bottom_right(position)
+        move += [self.bishop_bottom_left(position)]
+        move += [self.bishop_middle_left(position)]
+        move += [self.bishop_top_left(position)]
+        move += [self.bishop_top_right(position)]
+        move += [self.bishop_middle_right(position)]
+        move += [self.bishop_bottom_right(position)]
         return move
-    def generate_moves(self,position):
-        return self.generate_bishop_moves(position)
+
+    def generate_moves(self, position=None):
+        if (position is None):
+            return self.generate_bishop_moves(self.position)
+        else:
+            return self.generate_bishop_moves(position)
 
 class Rook(Pieces):
     def __init__(self,team,position):
@@ -274,15 +298,19 @@ class Rook(Pieces):
         return list_of_action
     def generate_rook_moves(self,pos):
         move = []
-        move += self.rook_bottom(pos)
-        move += self.rook_bottom_left(pos)
-        move += self.rook_top_left(pos)
-        move += self.rook_top(pos)
-        move += self.rook_top_right(pos)
-        move += self.rook_bottom_right(pos)
+        move += [self.rook_bottom(pos)]
+        move += [self.rook_bottom_left(pos)]
+        move += [self.rook_top_left(pos)]
+        move += [self.rook_top(pos)]
+        move += [self.rook_top_right(pos)]
+        move += [self.rook_bottom_right(pos)]
         return move
-    def generate_moves(self,position):
-        return self.generate_rook_moves(position)
+
+    def generate_moves(self, position=None):
+        if (position is None):
+            return self.generate_rook_moves(self.position)
+        else:
+            return self.generate_rook_moves(position)
 
 class Queen(Bishop,Rook):
     def __init__(self,team,position):
@@ -294,14 +322,21 @@ class Queen(Bishop,Rook):
         move += self.generate_rook_moves(position)
         move += self.generate_bishop_moves(position)
         return move
-    def generate_moves(self, position):
-        return self.generate_queen_moves(position)
+
+    def generate_moves(self, position=None):
+        if (position is None):
+            return self.generate_queen_moves(self.position)
+        else:
+            return self.generate_queen_moves(position)
 
 class King(Pieces):
     def __init__(self,team,position):
         super(King, self).__init__(team,KING,position)
     def generate_king_moves(self,position):
-        return self.get_positon_around(position)
-    def generate_moves(self,position):
-        return self.generate_king_moves(position)
+        return list(map(lambda x:[x],self.get_positon_around(position)))
 
+    def generate_moves(self, position=None):
+        if (position is None):
+            return self.generate_king_moves(self.position)
+        else:
+            return self.generate_king_moves(position)
