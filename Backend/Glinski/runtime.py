@@ -14,14 +14,16 @@ def position_evaluation(state):
 def generate_black_moves(env,evaluationFunc=position_evaluation):
     moves = env.get_actions_of(BLACK)
     chose=[]
-    for move in moves:
-        new_state = env.new_state_from_move(move)
-        eval = position_evaluation(new_state)
-        chose.append((move,eval))
-    print(chose)
-    maxeval =min(chose,key=lambda x:x[1])
-    return maxeval
-
+    game_result = env.is_done()
+    if(game_result is None):
+        for move in moves:
+            new_state = env.new_state_from_move(move)
+            eval = position_evaluation(new_state)
+            chose.append((move,eval))
+        # print(chose)
+        maxeval =min(chose,key=lambda x:x[1])
+        return maxeval
+    return game_result
 # test=generate_black_moves(board)
 def play(env,movegenerateFunc=generate_black_moves):
     while env.is_done() is None:
@@ -38,6 +40,6 @@ def play(env,movegenerateFunc=generate_black_moves):
             env.render()
         # env.render()
 
-play(board)
+# play(board)
 # print(test)
-['d4 d5',' e5 d5','c3->c4']
+# ['d4 d5',' e5 d5','c3->c4']

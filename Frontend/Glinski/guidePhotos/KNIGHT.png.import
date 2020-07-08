@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/46441 (1).svg-090307f64ddbe2d49c61c7b8492eee7d.stex"
+path="res://.import/KNIGHT.png-3e410e72be0285bb92c7b8c1d61a3ec8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://46441 (1).svg"
-dest_files=[ "res://.import/46441 (1).svg-090307f64ddbe2d49c61c7b8492eee7d.stex" ]
+source_file="res://guidePhotos/KNIGHT.png"
+dest_files=[ "res://.import/KNIGHT.png-3e410e72be0285bb92c7b8c1d61a3ec8.stex" ]
 
 [params]
 

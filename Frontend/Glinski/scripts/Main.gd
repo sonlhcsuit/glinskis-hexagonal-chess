@@ -750,18 +750,59 @@ func _on_location_select(location:String):
 			whiteTurn=false
 			blackTurn=true
 			$Notification.text="NOW IS THE BLACK TURN"
-#			$State.text=String(self.state)
-			
+			$State.text=String(self.state)
+			check_win_and_next_move()
 		return
-	if(blackTurn):
-		if(action_execute("black",location)):
-			whiteTurn=true
-			blackTurn=false
-			$Notification.text="NOW IS THE WHITE TURN"
-#			$State.text=String(self.state)
-#			$Selected_piece.text=String(is_selected_piece)
-			return
+#	if(blackTurn):
+#		black_team_call()
+#		if(action_execute("black",location)):
+#			whiteTurn=true
+#			blackTurn=false
+#			$Notification.text="NOW IS THE WHITE TURN"
+##			$State.text=String(self.state)
+##			$Selected_piece.text=String(is_selected_piece)
+#			return
 	pass
+	
+func generate_server_data()->String:
+	var temp_state = {
+	"\"white\"": {
+		"\"pawn\"": [],
+		"\"knight\"": [],
+		"\"bishop\"": [],
+		"\"rook\"": [],
+		"\"queen\"": [],
+		"\"king\"": [],
+	},
+	"\"black\"": {
+		"\"pawn\"": [],
+		"\"knight\"": [],
+		"\"bishop\"": [],
+		"\"rook\"": [],
+		"\"queen\"": [],
+		"\"king\"": [],
+	}
+	}
+	for team in self.state:
+		for piece in self.state[team]:
+			var queryteam = String("\""+team+"\"")
+			var loc = "\""+self.state[team][piece] +"\""
+			if 'pawn'in piece:
+				temp_state[queryteam]["\"pawn\""].append(loc)
+			elif 'knight' in piece:
+				temp_state[queryteam]["\"knight\""].append(loc)
+			elif 'bishop' in piece:
+				temp_state[queryteam]["\"bishop\""].append(loc)
+			elif 'rook' in piece:
+				temp_state[queryteam]["\"rook\""].append(loc)
+			elif 'queen' in piece:
+				temp_state[queryteam]["\"queen\""].append(loc)
+			elif 'king' in piece:
+				temp_state[queryteam]["\"king\""].append(loc)
+			else:
+				pass
+#	$State.text = String(temp_state)..,,
+	return JSON.print(String(temp_state).replace("...",""))
 	
 func connect_button()->void:
 	var test = {
@@ -779,6 +820,7 @@ func connect_button()->void:
 		for number in range(1,test[ele]+1):
 			var s = "ChessLocation/"+ele+"/"+ele+String(number)
 			get_node(s).connect("pressed",self,"_on_location_select",[ele+String(number)])
+	$make_request.connect("pressed",self,"_on_make_request")
 	return
 	
 # Called when the node enters the scene tree for the first time.
@@ -787,8 +829,83 @@ func _ready():
 	connect_button()
 	show_movable()
 	$Notification.text="NOW IS THE WHITE TURN"
+	$HTTPRequest.connect("request_completed", self, "_on_black_moves_completed")
+	$HTTPRequest2.connect("request_completed", self, "_on_check_win_completed")
+	$HTTPRequest3.connect("request_completed", self, "_on_check_win_and_next_move_completed")
 	pass # Replace with function body.
 
 func _on_TextureButton_pressed():
 	get_tree().change_scene("res://Scenes/IntroWindown.tscn")
 	pass # Replace with function body.
+
+func _on_make_request():
+	pass
+#	black_moves()
+
+func _on_check_win_and_next_move_completed(result, response_code, headers, body):
+	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+	if(json_response.error== OK):
+		var ans = json_response.result["winner"]
+		if(ans =="not yet"):
+			black_moves()
+		else:
+			win(ans)
+	pass
+
+func _on_check_win_completed(result, response_code, headers, body):
+	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+	if(json_response.error== OK):
+		var ans = json_response.result["winner"]
+		if(ans =="not yet"):
+			pass
+		else:
+			win(ans)
+	pass
+
+func _on_black_moves_completed(result, response_code, headers, body):
+	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+	if(json_response.error== OK):
+		if(json_response.result.has('black_move')):
+			var move:String = json_response.result["black_move"]
+			var original = move.split("->")[0]
+			var destination = move.split("->")[1]
+			action_execute('black',original)
+			action_execute('black',destination)
+			whiteTurn=true
+			blackTurn=false
+			check_win()
+			$Notification.text="NOW IS THE WHITE TURN"
+			$State.text = move
+			
+	else:
+		pass
+		$State.text = 'BUG'
+		
+#	$Action.text = String(self.state["white"]["king"])
+	
+func black_moves():
+	var url = 'http://localhost:5000/move'
+	var data = generate_server_data()
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest.request(url,headers,false,HTTPClient.METHOD_POST,data)
+	
+func check_win():
+	var url = 'http://localhost:5000/checkwin'
+	var data = generate_server_data()
+	$State.text = String(data)
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest2.request(url,headers,false,HTTPClient.METHOD_POST,data)
+	
+func check_win_and_next_move():
+	var url = 'http://localhost:5000/checkwin'
+	var data = generate_server_data()
+	$State.text = String(data)
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest3.request(url,headers,false,HTTPClient.METHOD_POST,data)
+
+func win(team:String):
+	$PopupDialog/State.text = team + 'WIN'
+#	$ChessBlack.hide()
+#	$ChessWhite.hide()
+	$PopupDialog.show()
+	$PopupDialog.popup()
