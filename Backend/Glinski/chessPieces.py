@@ -13,11 +13,11 @@ class Pieces(object):
         elif type == KNIGHT:
             self.value = coefficent*30
         elif type == BISHOP:
-            self.value = coefficent*40
+            self.value = coefficent*60
         elif type == ROOK:
-            self.value = coefficent*50
+            self.value = coefficent*100
         elif type == QUEEN:
-            self.value = coefficent*90
+            self.value = coefficent*250
         elif type == KING:
             self.value = coefficent*900
 

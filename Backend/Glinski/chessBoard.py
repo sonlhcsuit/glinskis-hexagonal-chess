@@ -4,7 +4,7 @@ default_state = {
     "white": {
         "pawn": ['B2', 'C3', 'D4', 'E5', 'F4', 'G3', 'H2'],
         "knight": ['C1', 'G1'],
-        "bishop": ['E1', 'E2', 'E3', ],
+        "bishop": ['E1', 'E2', 'E3' ],
         "rook": ['B1', 'H1'],
         "queen": ['D1'],
         "king": ['F1'],
@@ -14,7 +14,7 @@ default_state = {
         "knight": ['C8', 'G8'],
         "bishop": ['E8', 'E9', 'E10'],
         "rook": ['B7', 'H7'],
-        "queen": ['D9'],#d9
+        "queen": ['D9'],
         "king": ['F9'],
     }
 }
@@ -243,7 +243,6 @@ class ChessBoard:
             return moves
 
     def perform_move(self,move):
-
         temp = self.new_state_from_move(move,'SIMPLE')
         self.state=self.update_state(temp)
         return
@@ -273,7 +272,9 @@ class ChessBoard:
         blacks = self.get_locations_of(BLACK)
         whites = self.get_locations_of(WHITE)
         piece = self.select_piece_at(original)
+        # print(self.state, piece)
         if(piece is None):
+            # print(self.state,piece)
             return None
         team = piece.get_team()
         atk=False
@@ -309,7 +310,7 @@ class ChessBoard:
         elif team == WHITE:
             locs = self.get_locations_of(WHITE)
             locs = list(map(self.get_action_at, locs))
-            print(locs)
+            # print(locs)
         answ = []
         for i in locs:
             answ+=i

@@ -13,7 +13,8 @@ def response_move():
     # print(state)
     state = json.loads(state)
     temp_board = ChessBoard(state)
-    result  = generate_black_moves(temp_board)
+    result  = minimax(temp_board,1,BLACK)
+    print(result)
     if(result == WHITE or result == BLACK):
         return {"game_state":result}
     return {"black_move":result[0]}
@@ -23,7 +24,7 @@ def checkwin():
     state = request.get_json()
     state = json.loads(state)
     temp_board = ChessBoard(state)
-    result = generate_black_moves(temp_board)
+    result = temp_board.is_done()
     if (result == WHITE or result == BLACK):
         print({"winner": result})
         return {"winner": result}
