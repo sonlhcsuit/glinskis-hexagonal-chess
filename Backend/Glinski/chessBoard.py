@@ -315,11 +315,3 @@ class ChessBoard:
         for i in locs:
             answ+=i
         return answ
-    # def get_info(self):
-
-
-    # def get_action(self,team=BLACK):
-
-
-
-
