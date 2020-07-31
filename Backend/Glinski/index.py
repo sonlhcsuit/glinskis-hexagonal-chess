@@ -10,20 +10,26 @@ def index():
 @app.route('/move',methods=['post'])
 def response_move():
     state = request.get_json()
-    # print(state)
+    print(state)
     state = json.loads(state)
-    temp_board = ChessBoard(state)
-    result  = minimax(temp_board,1,BLACK)
+    temp_board = ChessBoard(state['board'])
+    team = state['team']
+    print(state)
+    result = None
+    if team.upper() == BLACK:
+        result = minimaxAlphaBeta(temp_board,2,-10000000000,1000000000,BLACK,material_evaluation_with_coefficient)
+    else:
+        result = minimaxAlphaBeta(temp_board, 2, -10000000000, 1000000000, WHITE, material_evaluation_with_coefficient)
     print(result)
-    if(result == WHITE or result == BLACK):
-        return {"game_state":result}
-    return {"black_move":result[0]}
+    return {
+        "team":team,
+        "move":result[0]}
 
 @app.route('/checkwin',methods=['post'])
 def checkwin():
     state = request.get_json()
     state = json.loads(state)
-    temp_board = ChessBoard(state)
+    temp_board = ChessBoard(state['board'])
     result = temp_board.is_done()
     if (result == WHITE or result == BLACK):
         print({"winner": result})

@@ -665,7 +665,6 @@ __meta__ = {
 }
 
 [node name="State" type="Label" parent="."]
-visible = false
 margin_left = 18.0
 margin_top = 325.0
 margin_right = 782.0

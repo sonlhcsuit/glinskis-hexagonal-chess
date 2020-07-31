@@ -83,15 +83,6 @@ king_pos = {
     "I": [-2, -1, 1, 1, -1, -2],
 }
 
-def material_evaluation(state):
-    totalVal = 0
-    for team in state:
-        for kind in state[team]:
-            for piece in state[team][kind]:
-                totalVal += piece.get_value()
-    return totalVal
-
-
 def coefficient_value(piece):
     coef = 1
     coefTable = None
@@ -116,6 +107,14 @@ def coefficient_value(piece):
     position = piece.get_position()
 
     return coef*pureVal * coefTable[position[0]][int(position[1:])-1]
+
+def material_evaluation(state):
+    totalVal = 0
+    for team in state:
+        for kind in state[team]:
+            for piece in state[team][kind]:
+                totalVal += piece.get_value()
+    return totalVal
 
 def material_evaluation_with_coefficient(state):
     totalVal = 0
@@ -303,7 +302,7 @@ def negamaxAlphaBeta(env,depth,alpha,beta,color,evaluationFunc=material_evaluati
             break
     return choice, value
 ######################################testing#################################
-# import time
+import time
 # t0= time.process_time()
 # print("# of actions: {}".format(len(board.get_actions_of(BLACK))))
 # print(minimax(board,2,BLACK,material_evaluation_with_coefficient))
@@ -346,18 +345,19 @@ def negamaxAlphaBeta(env,depth,alpha,beta,color,evaluationFunc=material_evaluati
 # print("Time elapsed Negamax and Alpha-Beta pruning with depth=3: {0:.10f}".format(t1))
 # print("------------------------------------------------------------------------------------------")
 
-def tocsv(input):
-    f = open("test.csv", "w")
-    for i in input:
-        f.write("{},".format(i))
-    f.write("\n")
-    print('\n', end="")
-    for i in range(0, 10):
-        for j in input:
-            if (len(input[j]) - 1 < i):
-                f.write("x,")
-            else:
-                f.write("{},".format(input[j][i]))
-        f.write("\n")
+# def tocsv(input):
+#     f = open("test.csv", "w")
+#     for i in input:
+#         f.write("{},".format(i))
+#     f.write("\n")
+#     print('\n', end="")
+#     for i in range(0, 10):
+#         for j in input:
+#             if (len(input[j]) - 1 < i):
+#                 f.write("x,")
+#             else:
+#                 f.write("{},".format(input[j][i]))
+#         f.write("\n")
+#
+# tocsv(king_pos)
 
-tocsv(king_pos)

@@ -743,16 +743,66 @@ func initial_state()->void:
 			move_pieces_to(state[team][piece])
 	reset_select()
 	return
+	
+func ONLINE_MOVES(team:String):
+	var url = 'http://127.0.0.1:5000/move'
+	var headers = ["Content-Type: application/json"]
+	var data = generate_server_data(team)
+	$HTTPRequest.request(url,headers,false,HTTPClient.METHOD_POST,data)
+
+func _on_ONLINE_MOVES_completed(result, response_code, headers, body):
+	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+	if(json_response.error== OK):
+		if(json_response.result.has('team')):
+			var move:String = json_response.result["move"]
+			var team = json_response.result["team"]
+			var original = move.split("->")[0]
+			var destination = move.split("->")[1]
+			action_execute(team.to_lower(),original)
+			action_execute(team.to_lower(),destination)
+			whiteTurn=!whiteTurn
+			blackTurn=!blackTurn
+			$State.text = team
+			check_win_and_next_move()
+	else:
+		pass
+		$State.text = 'BUG'
+	
+func check_win_and_next_move():
+	var url = 'http://127.0.0.1:5000/checkwin'
+	var data = generate_server_data("WHITE")
+	$State.text = String(data)
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequest3.request(url,headers,false,HTTPClient.METHOD_POST,data)
+
+func _on_check_win_and_next_move_completed(result, response_code, headers, body):
+	$State.text = String(response_code)
+	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+	if(json_response.error== OK):
+		var ans = json_response.result["winner"]
+		if(ans =="not yet"):
+			autoplay()
+		else:
+			win(ans)
+	pass
+
+func autoplay():
+	if(whiteTurn):
+		ONLINE_MOVES("WHITE")
+#		do the white
+	else:
+		ONLINE_MOVES("BLACK")
+
 
 func _on_location_select(location:String):
-	if(whiteTurn):
-		if(action_execute("white",location)):
-			whiteTurn=false
-			blackTurn=true
-			$Notification.text="NOW IS THE BLACK TURN"
-			$State.text=String(self.state)
-			check_win_and_next_move()
-		return
+#	if(whiteTurn):
+#		if(action_execute("white",location)):
+#			whiteTurn=false
+#			blackTurn=true
+#			$Notification.text="NOW IS THE BLACK TURN"
+#			$State.text=String(self.state)
+#			check_win_and_next_move()
+#		return
 #	if(blackTurn):
 #		black_team_call()
 #		if(action_execute("black",location)):
@@ -764,41 +814,44 @@ func _on_location_select(location:String):
 #			return
 	pass
 	
-func generate_server_data()->String:
+func generate_server_data(team:String)->String:
 	var temp_state = {
-	"\"white\"": {
-		"\"pawn\"": [],
-		"\"knight\"": [],
-		"\"bishop\"": [],
-		"\"rook\"": [],
-		"\"queen\"": [],
-		"\"king\"": [],
-	},
-	"\"black\"": {
-		"\"pawn\"": [],
-		"\"knight\"": [],
-		"\"bishop\"": [],
-		"\"rook\"": [],
-		"\"queen\"": [],
-		"\"king\"": [],
-	}
+		"\"team\"":"\""+team+"\"",
+		"\"board\"":{
+			"\"white\"": {
+				"\"pawn\"": [],
+				"\"knight\"": [],
+				"\"bishop\"": [],
+				"\"rook\"": [],
+				"\"queen\"": [],
+				"\"king\"": [],
+			},
+			"\"black\"": {
+				"\"pawn\"": [],
+				"\"knight\"": [],
+				"\"bishop\"": [],
+				"\"rook\"": [],
+				"\"queen\"": [],
+				"\"king\"": [],
+			}
+		}
 	}
 	for team in self.state:
 		for piece in self.state[team]:
 			var queryteam = String("\""+team+"\"")
 			var loc = "\""+self.state[team][piece] +"\""
 			if 'pawn'in piece:
-				temp_state[queryteam]["\"pawn\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"pawn\""].append(loc)
 			elif 'knight' in piece:
-				temp_state[queryteam]["\"knight\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"knight\""].append(loc)
 			elif 'bishop' in piece:
-				temp_state[queryteam]["\"bishop\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"bishop\""].append(loc)
 			elif 'rook' in piece:
-				temp_state[queryteam]["\"rook\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"rook\""].append(loc)
 			elif 'queen' in piece:
-				temp_state[queryteam]["\"queen\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"queen\""].append(loc)
 			elif 'king' in piece:
-				temp_state[queryteam]["\"king\""].append(loc)
+				temp_state["\"board\""][queryteam]["\"king\""].append(loc)
 			else:
 				pass
 #	$State.text = String(temp_state)..,,
@@ -829,9 +882,10 @@ func _ready():
 	connect_button()
 	show_movable()
 	$Notification.text="NOW IS THE WHITE TURN"
-	$HTTPRequest.connect("request_completed", self, "_on_black_moves_completed")
-	$HTTPRequest2.connect("request_completed", self, "_on_check_win_completed")
+	$HTTPRequest.connect("request_completed", self, "_on_ONLINE_MOVES_completed")
+#	$HTTPRequest2.connect("request_completed", self, "_on_check_win_completed")
 	$HTTPRequest3.connect("request_completed", self, "_on_check_win_and_next_move_completed")
+	autoplay()
 	pass # Replace with function body.
 
 func _on_TextureButton_pressed():
@@ -841,67 +895,6 @@ func _on_TextureButton_pressed():
 func _on_make_request():
 	pass
 #	black_moves()
-
-func _on_check_win_and_next_move_completed(result, response_code, headers, body):
-	var json_response = JSON.parse(String(body.get_string_from_ascii()))
-	if(json_response.error== OK):
-		var ans = json_response.result["winner"]
-		if(ans =="not yet"):
-			black_moves()
-		else:
-			win(ans)
-	pass
-
-func _on_check_win_completed(result, response_code, headers, body):
-	var json_response = JSON.parse(String(body.get_string_from_ascii()))
-	if(json_response.error== OK):
-		var ans = json_response.result["winner"]
-		if(ans =="not yet"):
-			pass
-		else:
-			win(ans)
-	pass
-
-func _on_black_moves_completed(result, response_code, headers, body):
-	var json_response = JSON.parse(String(body.get_string_from_ascii()))
-	if(json_response.error== OK):
-		if(json_response.result.has('black_move')):
-			var move:String = json_response.result["black_move"]
-			var original = move.split("->")[0]
-			var destination = move.split("->")[1]
-			action_execute('black',original)
-			action_execute('black',destination)
-			whiteTurn=true
-			blackTurn=false
-			check_win()
-			$Notification.text="NOW IS THE WHITE TURN"
-			$State.text = move
-			
-	else:
-		pass
-		$State.text = 'BUG'
-		
-#	$Action.text = String(self.state["white"]["king"])
-	
-func black_moves():
-	var url = 'http://localhost:5000/move'
-	var data = generate_server_data()
-	var headers = ["Content-Type: application/json"]
-	$HTTPRequest.request(url,headers,false,HTTPClient.METHOD_POST,data)
-	
-func check_win():
-	var url = 'http://localhost:5000/checkwin'
-	var data = generate_server_data()
-	$State.text = String(data)
-	var headers = ["Content-Type: application/json"]
-	$HTTPRequest2.request(url,headers,false,HTTPClient.METHOD_POST,data)
-	
-func check_win_and_next_move():
-	var url = 'http://localhost:5000/checkwin'
-	var data = generate_server_data()
-	$State.text = String(data)
-	var headers = ["Content-Type: application/json"]
-	$HTTPRequest3.request(url,headers,false,HTTPClient.METHOD_POST,data)
 
 func win(team:String):
 	$PopupDialog/State.text = team + 'WIN'
