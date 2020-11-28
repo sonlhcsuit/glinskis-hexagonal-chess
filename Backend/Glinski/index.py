@@ -17,9 +17,9 @@ def response_move():
     print(state)
     result = None
     if team.upper() == BLACK:
-        result = minimaxAlphaBeta(temp_board,2,-10000000000,1000000000,BLACK,material_evaluation_with_coefficient)
+        result = minimaxAlphaBeta(temp_board,4,-10000000000,1000000000,BLACK,material_evaluation_with_coefficient)
     else:
-        result = minimaxAlphaBeta(temp_board, 2, -10000000000, 1000000000, WHITE, material_evaluation_with_coefficient)
+        result = minimaxAlphaBeta(temp_board, 4, -10000000000, 1000000000, WHITE, material_evaluation_with_coefficient)
     print(result)
     return {
         "team":team,
