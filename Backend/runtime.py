@@ -83,6 +83,7 @@ king_pos = {
     "I": [-2, -1, 1, 1, -1, -2],
 }
 
+
 def coefficient_value(piece):
     coef = 1
     coefTable = None
@@ -106,7 +107,8 @@ def coefficient_value(piece):
     pureVal = piece.get_value()
     position = piece.get_position()
 
-    return coef*pureVal * coefTable[position[0]][int(position[1:])-1]
+    return coef * pureVal * coefTable[position[0]][int(position[1:]) - 1]
+
 
 def material_evaluation(state):
     totalVal = 0
@@ -116,6 +118,7 @@ def material_evaluation(state):
                 totalVal += piece.get_value()
     return totalVal
 
+
 def material_evaluation_with_coefficient(state):
     totalVal = 0
     for team in state:
@@ -124,10 +127,11 @@ def material_evaluation_with_coefficient(state):
                 totalVal += coefficient_value(piece)
     return totalVal
 
+
 # search alogrithm
 
 ##minimax
-def max_search(env, TEAM,evaluationFunc=material_evaluation):
+def max_search(env, TEAM, evaluationFunc=material_evaluation):
     chose = []
     game_result = env.is_done()
 
@@ -151,25 +155,26 @@ def max_search(env, TEAM,evaluationFunc=material_evaluation):
             return maxeval
     return game_result
 
-def minimax(env,depth,team,evaluationFunc=material_evaluation): # black get min -> white get max
-    if(env.is_done() is not None or depth==0):
-        a=env.get_state()
+
+def minimax(env, depth, team, evaluationFunc=material_evaluation):  # black get min -> white get max
+    if (env.is_done() is not None or depth == 0):
+        a = env.get_state()
         value = evaluationFunc(a)
-        return None,value
-    if team == BLACK:#min player
+        return None, value
+    if team == BLACK:  # min player
         moves = env.get_actions_of(BLACK)
         value = 10000000000
         choice = None
         for move in moves:
-            state = env.get_state(SIMPLE)# get board
-            new_env = ChessBoard(state) #new board like old board
-            new_env.perform_move(move) # new board after do move
-            _,newValue = minimax(new_env,depth-1,WHITE)
-            if(newValue < value):
-                value=newValue
+            state = env.get_state(SIMPLE)  # get board
+            new_env = ChessBoard(state)  # new board like old board
+            new_env.perform_move(move)  # new board after do move
+            _, newValue = minimax(new_env, depth - 1, WHITE)
+            if (newValue < value):
+                value = newValue
                 choice = move
-        return choice,value
-    elif team == WHITE:#max player
+        return choice, value
+    elif team == WHITE:  # max player
         moves = env.get_actions_of(WHITE)
         value = -10000000000
         choice = None
@@ -183,30 +188,32 @@ def minimax(env,depth,team,evaluationFunc=material_evaluation): # black get min 
                 choice = move
         return choice, value
 
-def minimaxAlphaBeta(env,depth,alpha,beta,team,evaluationFunc=material_evaluation): # black get min -> white get max alpha for white beta for black
-    if(env.is_done() is not None or depth==0):
-        a=env.get_state()
+
+def minimaxAlphaBeta(env, depth, alpha, beta, team,
+                     evaluationFunc=material_evaluation):  # black get min -> white get max alpha for white beta for black
+    if (env.is_done() is not None or depth == 0):
+        a = env.get_state()
         value = evaluationFunc(a)
-        return None,value
-    if team == BLACK:#min player
+        return None, value
+    if team == BLACK:  # min player
         moves = env.get_actions_of(BLACK)
         value = 10000000000
         choice = None
         for move in moves:
-            state = env.get_state(SIMPLE)# get board
-            new_env = ChessBoard(state) #new board like old board
-            new_env.perform_move(move) # new board after do move
-            _,newValue = minimaxAlphaBeta(new_env,depth-1,alpha,beta,WHITE)
-            #min
-            if(newValue < value):
-                value=newValue
+            state = env.get_state(SIMPLE)  # get board
+            new_env = ChessBoard(state)  # new board like old board
+            new_env.perform_move(move)  # new board after do move
+            _, newValue = minimaxAlphaBeta(new_env, depth - 1, alpha, beta, WHITE)
+            # min
+            if (newValue < value):
+                value = newValue
                 choice = move
-            if(value < beta):
+            if (value < beta):
                 beta = value
-            if(beta <= alpha):
+            if (beta <= alpha):
                 break
-        return choice,value
-    elif team == WHITE:#max player
+        return choice, value
+    elif team == WHITE:  # max player
         moves = env.get_actions_of(WHITE)
         value = -10000000000
         choice = None
@@ -214,93 +221,98 @@ def minimaxAlphaBeta(env,depth,alpha,beta,team,evaluationFunc=material_evaluatio
             state = env.get_state(SIMPLE)
             new_env = ChessBoard(state)
             new_env.perform_move(move)
-            _, newValue = minimaxAlphaBeta(new_env,depth - 1,alpha,beta, BLACK)
-            #max
+            _, newValue = minimaxAlphaBeta(new_env, depth - 1, alpha, beta, BLACK)
+            # max
             if (newValue > value):
                 value = newValue
                 choice = move
             if (value > alpha):
                 alpha = value
-            if alpha>=beta:
+            if alpha >= beta:
                 break
         return choice, value
 
-def OLD(env,depth,team,evaluationFunc=material_evaluation): # black get min -> white get max
-    if(env.is_done() is not None or depth==0):
-        a=env.get_state()
+
+def OLD(env, depth, team, evaluationFunc=material_evaluation):  # black get min -> white get max
+    if (env.is_done() is not None or depth == 0):
+        a = env.get_state()
         return evaluationFunc(a)
-    if team == BLACK:#min player
+    if team == BLACK:  # min player
         moves = env.get_actions_of(BLACK)
         chose = []
         for move in moves:
-            state = env.get_state(SIMPLE)# get board
-            new_env = ChessBoard(state) #new board like old board
-            new_env.perform_move(move) # new board after do move
-            value = OLD(new_env,depth-1,WHITE)
-            chose.append((move,value))
+            state = env.get_state(SIMPLE)  # get board
+            new_env = ChessBoard(state)  # new board like old board
+            new_env.perform_move(move)  # new board after do move
+            value = OLD(new_env, depth - 1, WHITE)
+            chose.append((move, value))
         minvalue = min(chose, key=lambda x: x[1])
         return minvalue
-    elif team == WHITE:#max player
+    elif team == WHITE:  # max player
         moves = env.get_actions_of(WHITE)
         chose = []
         for move in moves:
             state = env.get_state(SIMPLE)
             new_env = ChessBoard(state)
             new_env.perform_move(move)
-            value = OLD(new_env,depth-1,BLACK)
-            chose.append((move,value))
+            value = OLD(new_env, depth - 1, BLACK)
+            chose.append((move, value))
         maxvalue = max(chose, key=lambda x: x[1])
         return maxvalue
 
-def negamax(env,depth,color,evaluationFunc=material_evaluation):
+
+def negamax(env, depth, color, evaluationFunc=material_evaluation):
     if (env.is_done() is not None or depth == 0):
         a = env.get_state()
         value = evaluationFunc(a)
-        return None, color*value
+        return None, color * value
     value = -100000000000000000
     moves = None
     if color == -1:
         moves = env.get_actions_of(BLACK)
-    elif color==1:
+    elif color == 1:
         moves = env.get_actions_of(WHITE)
     choice = None
     for move in moves:
         state = env.get_state(SIMPLE)  # get board
         new_env = ChessBoard(state)  # new board like old board
         new_env.perform_move(move)  # new board after do move
-        _, newValue = negamax(new_env, depth - 1, -1*color)
+        _, newValue = negamax(new_env, depth - 1, -1 * color)
         newValue = - newValue
         if (newValue > value):
             value = newValue
             choice = move
     return choice, value
 
-def negamaxAlphaBeta(env,depth,alpha,beta,color,evaluationFunc=material_evaluation):
+
+def negamaxAlphaBeta(env, depth, alpha, beta, color, evaluationFunc=material_evaluation):
     if (env.is_done() is not None or depth == 0):
         a = env.get_state()
         value = evaluationFunc(a)
-        return None, color*value
+        return None, color * value
     value = -100000000000000000
     moves = None
     if color == -1:
         moves = env.get_actions_of(BLACK)
-    elif color==1:
+    elif color == 1:
         moves = env.get_actions_of(WHITE)
     choice = None
     for move in moves:
         state = env.get_state(SIMPLE)  # get board
         new_env = ChessBoard(state)  # new board like old board
         new_env.perform_move(move)  # new board after do move
-        _, newValue = negamaxAlphaBeta(new_env, depth - 1,-beta,-alpha, -1*color)
+        _, newValue = negamaxAlphaBeta(new_env, depth - 1, -beta, -alpha, -1 * color)
         newValue = - newValue
-        if(newValue >alpha):
+        if (newValue > alpha):
             alpha = newValue
         if (newValue > value):
             value = newValue
             choice = move
-        if alpha>beta:
+        if alpha > beta:
             break
     return choice, value
+
+
 ######################################testing#################################
 import time
 # t0= time.process_time()
@@ -360,4 +372,3 @@ import time
 #         f.write("\n")
 #
 # tocsv(king_pos)
-

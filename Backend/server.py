@@ -1,13 +1,17 @@
-from flask import Flask,request,jsonify
+from flask import Flask, request, jsonify
 from runtime import *
 import json
+
 app = Flask(__name__)
-@app.route('/',methods=['POST','GET'])
+
+
+@app.route('/', methods=['POST', 'GET'])
 def index():
     # print(request.get_json())
-    return jsonify({"result":"WELCOME TO GLINSKI CHESS!"})
+    return jsonify({"result": "WELCOME TO GLINSKI CHESS!"})
 
-@app.route('/move',methods=['post'])
+
+@app.route('/move', methods=['post'])
 def response_move():
     state = request.get_json()
     print(state)
@@ -17,16 +21,17 @@ def response_move():
     print(state)
     result = None
     if team.upper() == BLACK:
-        result = minimaxAlphaBeta(temp_board,4,-10000000000,1000000000,BLACK,material_evaluation_with_coefficient)
+        result = minimaxAlphaBeta(temp_board, 4, -10000000000, 1000000000, BLACK, material_evaluation_with_coefficient)
     else:
         result = minimaxAlphaBeta(temp_board, 4, -10000000000, 1000000000, WHITE, material_evaluation_with_coefficient)
     print(result)
     return {
-        "team":team,
-        "move":result[0]}
+        "team": team,
+        "move": result[0]}
 
-@app.route('/checkwin',methods=['post'])
-def checkwin():
+
+@app.route('/checkwin', methods=['post'])
+def evaluate_winning_status():
     state = request.get_json()
     state = json.loads(state)
     temp_board = ChessBoard(state['board'])
@@ -35,7 +40,9 @@ def checkwin():
         print({"winner": result})
         return {"winner": result}
     else:
-        print({"winner":"not yet"})
-        return {"winner":"not yet"}
+        print({"winner": "not yet"})
+        return {"winner": "not yet"}
+
+
 if __name__ == '__main__':
     app.run(debug=True)
