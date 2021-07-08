@@ -142,6 +142,7 @@ text = "ABOUT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/About" to="." method="_on_About_pressed"]
 [connection signal="pressed" from="VBoxContainer/Guide" to="." method="_on_Guide_pressed"]
