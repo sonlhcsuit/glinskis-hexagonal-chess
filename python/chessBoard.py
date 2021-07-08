@@ -1,4 +1,4 @@
-from chessPieces import *
+from piece import *
 
 default_state = {
     "white": {

@@ -1,25 +1,26 @@
 PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING = "PAWN", "KNIGHT", "BISHOP", "ROOK", "QUEEN", "KING"
 WHITE, BLACK = "WHITE", "BLACK"
 
+
 class Pieces(object):
     def __init__(self, team, type, position):
         self.position = position  # string
         self.type = type  # string
         self.team = team  # string
         self.moveable = []
-        coefficent = 1 if team==WHITE else -1
+        coefficent = 1 if team == WHITE else -1
         if (type == PAWN):
-            self.value = coefficent*10
+            self.value = coefficent * 10
         elif type == KNIGHT:
-            self.value = coefficent*30
+            self.value = coefficent * 30
         elif type == BISHOP:
-            self.value = coefficent*60
+            self.value = coefficent * 60
         elif type == ROOK:
-            self.value = coefficent*100
+            self.value = coefficent * 100
         elif type == QUEEN:
-            self.value = coefficent*250
+            self.value = coefficent * 250
         elif type == KING:
-            self.value = coefficent*900
+            self.value = coefficent * 900
 
     def valid_position(self, position):
         if position[0] == 'A' or position[0] == 'I':
@@ -34,12 +35,16 @@ class Pieces(object):
             return int(position[1:]) <= 10 and int(position[1:]) >= 1
         else:
             return False
+
     def get_position(self):
         return self.position
+
     def get_value(self):
         return self.value
+
     def get_team(self):
         return self.team
+
     def get_type(self):
         return self.type
 
@@ -98,10 +103,13 @@ class Pieces(object):
 
     def get_rightDown_position(self, position):
         return self.get_positon_around(position)[5]
-    def generate_moves(self,position):
+
+    def generate_moves(self, position):
         return position
+
     def get_info(self):
-        return (self.team,self.type,self.position,self.value)
+        return (self.team, self.type, self.position, self.value)
+
     def __str__(self):
         # return self.get_info()
         return '{} {} {} {}'.format(self.team, self.type, self.position, self.value)
@@ -109,16 +117,17 @@ class Pieces(object):
     def __repr__(self):
         return self.__str__()
 
+
 class Pawn(Pieces):
     def __init__(self, team, position):
         super(Pawn, self).__init__(team, PAWN, position)
 
-    def generate_pawn_moves(self,position):
-        if(self.team == WHITE):
+    def generate_pawn_moves(self, position):
+        if (self.team == WHITE):
             lt = self.get_leftTop_position(position)
             t = self.get_top_position(position)
             rt = self.get_rightTop_position(position)
-            self.moveable = [[t],[lt, rt]]
+            self.moveable = [[t], [lt, rt]]
             return self.moveable
         elif self.team == BLACK:
             ld = self.get_leftDown_position(position)
@@ -127,17 +136,18 @@ class Pawn(Pieces):
             self.moveable = [[d], [ld, rd]]
             return self.moveable
 
-    def generate_moves(self,position=None):
-        if(position is None):
+    def generate_moves(self, position=None):
+        if (position is None):
             return self.generate_pawn_moves(self.position)
         else:
             return self.generate_pawn_moves(position)
+
 
 class Knight(Pieces):
     def __init__(self, team, position):
         super(Knight, self).__init__(team, KNIGHT, position)
 
-    def generate_knight_moves(self,position):
+    def generate_knight_moves(self, position):
         move = []
         # left bottom
         tempPos = self.get_down_position(position)
@@ -170,11 +180,13 @@ class Knight(Pieces):
         move.append(self.get_top_position(tempPos))
         move.append(self.get_rightTop_position(tempPos))
         return move
-    def generate_moves(self,position=None):
+
+    def generate_moves(self, position=None):
         if (position is None):
             return self.generate_knight_moves(self.position)
         else:
             return self.generate_knight_moves(position)
+
 
 class Bishop(Pieces):
     def __init__(self, team, position):
@@ -250,53 +262,60 @@ class Bishop(Pieces):
         else:
             return self.generate_bishop_moves(position)
 
-class Rook(Pieces):
-    def __init__(self,team,position):
-        super(Rook, self).__init__(team,ROOK,position)
 
-    def rook_bottom(self,pos):
+class Rook(Pieces):
+    def __init__(self, team, position):
+        super(Rook, self).__init__(team, ROOK, position)
+
+    def rook_bottom(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_down_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def rook_bottom_left(self,pos):
+
+    def rook_bottom_left(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_leftDown_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def rook_bottom_right(self,pos):
+
+    def rook_bottom_right(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_rightDown_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def rook_top(self,pos):
+
+    def rook_top(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_top_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def rook_top_left(self,pos):
+
+    def rook_top_left(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_leftTop_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def rook_top_right(self,pos):
+
+    def rook_top_right(self, pos):
         list_of_action = []
         temp = pos
         while temp is not None:
             temp = self.get_rightTop_position(temp)
             list_of_action.append(temp)
         return list_of_action
-    def generate_rook_moves(self,pos):
+
+    def generate_rook_moves(self, pos):
         move = []
         move += [self.rook_bottom(pos)]
         move += [self.rook_bottom_left(pos)]
@@ -312,12 +331,13 @@ class Rook(Pieces):
         else:
             return self.generate_rook_moves(position)
 
-class Queen(Bishop,Rook):
-    def __init__(self,team,position):
-        Pieces.__init__(self,team,QUEEN,position)
+
+class Queen(Bishop, Rook):
+    def __init__(self, team, position):
+        Pieces.__init__(self, team, QUEEN, position)
         # super(Queen, self).__init__(team,QUEEN,position)
 
-    def generate_queen_moves(self,position):
+    def generate_queen_moves(self, position):
         move = []
         move += self.generate_rook_moves(position)
         move += self.generate_bishop_moves(position)
@@ -329,11 +349,13 @@ class Queen(Bishop,Rook):
         else:
             return self.generate_queen_moves(position)
 
+
 class King(Pieces):
-    def __init__(self,team,position):
-        super(King, self).__init__(team,KING,position)
-    def generate_king_moves(self,position):
-        return list(map(lambda x:[x],self.get_positon_around(position)))
+    def __init__(self, team, position):
+        super(King, self).__init__(team, KING, position)
+
+    def generate_king_moves(self, position):
+        return list(map(lambda x: [x], self.get_positon_around(position)))
 
     def generate_moves(self, position=None):
         if (position is None):
