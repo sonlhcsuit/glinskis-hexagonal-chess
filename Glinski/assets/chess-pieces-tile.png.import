@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hex-5x5x6.png-887dfd17c3198b67d95e413d7e36dad6.stex"
+path="res://.import/chess-pieces-tile.png-52299b56dd863b37ec6c5d720f4ffa0c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hex-5x5x6.png"
-dest_files=[ "res://.import/hex-5x5x6.png-887dfd17c3198b67d95e413d7e36dad6.stex" ]
+source_file="res://assets/chess-pieces-tile.png"
+dest_files=[ "res://.import/chess-pieces-tile.png-52299b56dd863b37ec6c5d720f4ffa0c.stex" ]
 
 [params]
 

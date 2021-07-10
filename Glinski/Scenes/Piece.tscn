@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/rook_b.tres" type="Texture" id=1]
+
+[node name="TextureRect" type="TextureRect"]
+anchor_left = -0.00072438
+anchor_right = -0.00072438
+margin_right = 135.0
+margin_bottom = 135.0
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

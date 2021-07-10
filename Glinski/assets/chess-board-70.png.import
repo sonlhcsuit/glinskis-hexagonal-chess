@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/futuristic-technology-background-with-honeycombs_23-2148481277.jpg-a9b8be4c8fe5e6cf04d39ca8abf6f2e9.stex"
+path="res://.import/chess-board-70.png-17477041977b2307e4a4adba33697a8c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/futuristic-technology-background-with-honeycombs_23-2148481277.jpg"
-dest_files=[ "res://.import/futuristic-technology-background-with-honeycombs_23-2148481277.jpg-a9b8be4c8fe5e6cf04d39ca8abf6f2e9.stex" ]
+source_file="res://assets/chess-board-70.png"
+dest_files=[ "res://.import/chess-board-70.png-17477041977b2307e4a4adba33697a8c.stex" ]
 
 [params]
 

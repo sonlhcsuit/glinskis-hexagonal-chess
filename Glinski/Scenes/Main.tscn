@@ -1,23 +1,12 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://sprites/WKnight.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Slot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/FakeButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=4]
-[ext_resource path="res://sprites/BBishop.tscn" type="PackedScene" id=5]
-[ext_resource path="res://sprites/WBishop.tscn" type="PackedScene" id=6]
-[ext_resource path="res://sprites/BQueen.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sprites/BKing.tscn" type="PackedScene" id=8]
-[ext_resource path="res://sprites/BKnight.tscn" type="PackedScene" id=9]
-[ext_resource path="res://sprites/WPawn.tscn" type="PackedScene" id=10]
-[ext_resource path="res://sprites/BPawn.tscn" type="PackedScene" id=11]
-[ext_resource path="res://sprites/WRook.tscn" type="PackedScene" id=12]
-[ext_resource path="res://sprites/WQueen.tscn" type="PackedScene" id=13]
-[ext_resource path="res://sprites/WKing.tscn" type="PackedScene" id=14]
-[ext_resource path="res://sprites/BRook.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=16]
 [ext_resource path="res://5eba9a49ae6b7.png" type="Texture" id=17]
 [ext_resource path="res://scripts/Board.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/Piece.tscn" type="PackedScene" id=19]
 [ext_resource path="res://robotTheme.tres" type="Theme" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -44,6 +33,9 @@ func _ready():
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -74,10 +66,10 @@ script = ExtResource( 18 )
 [node name="Slots" type="Node2D" parent="CenterContainer/Board"]
 
 [node name="Slot1" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-margin_left = 35.0
-margin_top = 570.0
-margin_right = 80.0
-margin_bottom = 650.0
+margin_left = 311.807
+margin_top = 727.275
+margin_right = 356.807
+margin_bottom = 807.275
 
 [node name="Slot2" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
@@ -284,142 +276,18 @@ margin_right = 44.716
 [node name="Slot69" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
 [node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-margin_left = -0.283997
-margin_right = 44.716
+margin_left = 0.115417
+margin_top = -1.59756
+margin_right = 45.1154
+margin_bottom = 78.4024
 
-[node name="ChessBlack" type="Node2D" parent="."]
-visible = false
-
-[node name="KingBlack" parent="ChessBlack" instance=ExtResource( 8 )]
-position = Vector2( 439.505, 139.504 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BishopBlack1" parent="ChessBlack" instance=ExtResource( 5 )]
-position = Vector2( 394.739, 230.397 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BishopBlack2" parent="ChessBlack" instance=ExtResource( 5 )]
-position = Vector2( 393.919, 170.776 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BishopBlack3" parent="ChessBlack" instance=ExtResource( 5 )]
-position = Vector2( 394.661, 112.288 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="KnightBlack1" parent="ChessBlack" instance=ExtResource( 9 )]
-position = Vector2( 287.643, 165.249 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="KnightBlack2" parent="ChessBlack" instance=ExtResource( 9 )]
-position = Vector2( 500.068, 169.818 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack1" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 241.414, 262.925 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack2" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 288.388, 294.566 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack3" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 349.906, 318.966 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack4" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 400.057, 342.608 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack5" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 446.04, 313.385 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack6" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 497.832, 286.302 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnBlack7" parent="ChessBlack" instance=ExtResource( 11 )]
-position = Vector2( 548.812, 263.61 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="QueenBlack1" parent="ChessBlack" instance=ExtResource( 7 )]
-position = Vector2( 345.344, 139.036 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="RookBlack1" parent="ChessBlack" instance=ExtResource( 15 )]
-position = Vector2( 241.281, 203.752 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="RookBlack2" parent="ChessBlack" instance=ExtResource( 15 )]
-position = Vector2( 542.162, 199.407 )
-scale = Vector2( 0.248188, 0.248188 )
-
-[node name="ChessWhite" type="Node2D" parent="."]
-visible = false
-
-[node name="BishopWhite1" parent="ChessWhite" instance=ExtResource( 6 )]
-position = Vector2( 394.904, 646.815 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BishopWhite2" parent="ChessWhite" instance=ExtResource( 6 )]
-position = Vector2( 398.459, 581.026 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="BishopWhite3" parent="ChessWhite" instance=ExtResource( 6 )]
-position = Vector2( 395.792, 528.574 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="KingWhite" parent="ChessWhite" instance=ExtResource( 14 )]
-position = Vector2( 450.024, 617.477 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="KnightWhite1" parent="ChessWhite" instance=ExtResource( 1 )]
-position = Vector2( 286.443, 572.136 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="KnightWhite2" parent="ChessWhite" instance=ExtResource( 1 )]
-position = Vector2( 498.92, 587.25 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite1" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 238.435, 493.013 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite2" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 294.443, 464.564 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite3" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 348.675, 431.67 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite4" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 397.571, 411.222 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite5" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 449.134, 441.449 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite6" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 501.587, 464.564 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="PawnWhite7" parent="ChessWhite" instance=ExtResource( 10 )]
-position = Vector2( 549.597, 483.233 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="QueenWhite1" parent="ChessWhite" instance=ExtResource( 13 )]
-position = Vector2( 349.024, 615.112 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="RookWhite1" parent="ChessWhite" instance=ExtResource( 12 )]
-position = Vector2( 237.862, 559.888 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="RookWhite2" parent="ChessWhite" instance=ExtResource( 12 )]
-position = Vector2( 551.687, 555.443 )
-scale = Vector2( 0.25, 0.25 )
+[node name="TextureRect" parent="CenterContainer/Board" instance=ExtResource( 19 )]
+anchor_top = 0.00031116
+anchor_bottom = 0.00031116
+margin_left = -96.916
+margin_top = 408.688
+margin_right = 38.084
+margin_bottom = 543.688
 
 [node name="ChessLocation" type="Node2D" parent="."]
 visible = false
@@ -434,27 +302,27 @@ margin_bottom = 688.585
 
 [node name="A2" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
-margin_top = 578.962
+margin_top = 578.07
 margin_right = 312.223
-margin_bottom = 628.962
+margin_bottom = 628.07
 
 [node name="A3" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
-margin_top = 517.141
+margin_top = 516.249
 margin_right = 312.223
-margin_bottom = 567.141
+margin_bottom = 566.249
 
 [node name="A4" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
-margin_top = 457.717
+margin_top = 456.825
 margin_right = 312.223
-margin_bottom = 507.717
+margin_bottom = 506.825
 
 [node name="A5" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
-margin_top = 397.294
+margin_top = 396.402
 margin_right = 312.223
-margin_bottom = 447.294
+margin_bottom = 446.402
 
 [node name="A6" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
@@ -472,27 +340,27 @@ margin_bottom = 718.997
 
 [node name="B2" parent="ChessLocation/B" instance=ExtResource( 3 )]
 margin_left = 316.222
-margin_top = 608.374
+margin_top = 607.482
 margin_right = 366.222
-margin_bottom = 658.374
+margin_bottom = 657.482
 
 [node name="B3" parent="ChessLocation/B" instance=ExtResource( 3 )]
 margin_left = 316.222
-margin_top = 547.552
+margin_top = 546.66
 margin_right = 366.222
-margin_bottom = 597.552
+margin_bottom = 596.66
 
 [node name="B4" parent="ChessLocation/B" instance=ExtResource( 3 )]
 margin_left = 316.222
-margin_top = 488.128
+margin_top = 487.236
 margin_right = 366.222
-margin_bottom = 538.128
+margin_bottom = 537.236
 
 [node name="B5" parent="ChessLocation/B" instance=ExtResource( 3 )]
 margin_left = 316.222
-margin_top = 427.707
+margin_top = 426.815
 margin_right = 366.222
-margin_bottom = 477.707
+margin_bottom = 476.815
 
 [node name="B6" parent="ChessLocation/B" instance=ExtResource( 3 )]
 margin_left = 316.222
@@ -522,27 +390,27 @@ margin_bottom = 689.585
 
 [node name="C3" parent="ChessLocation/C" instance=ExtResource( 3 )]
 margin_left = 366.222
-margin_top = 578.764
+margin_top = 577.872
 margin_right = 416.222
-margin_bottom = 628.764
+margin_bottom = 627.872
 
 [node name="C4" parent="ChessLocation/C" instance=ExtResource( 3 )]
 margin_left = 366.222
-margin_top = 519.34
+margin_top = 518.448
 margin_right = 416.222
-margin_bottom = 569.34
+margin_bottom = 568.448
 
 [node name="C5" parent="ChessLocation/C" instance=ExtResource( 3 )]
 margin_left = 366.222
-margin_top = 458.919
+margin_top = 458.027
 margin_right = 416.222
-margin_bottom = 508.919
+margin_bottom = 508.027
 
 [node name="C6" parent="ChessLocation/C" instance=ExtResource( 3 )]
 margin_left = 366.222
-margin_top = 397.695
+margin_top = 396.803
 margin_right = 416.222
-margin_bottom = 447.695
+margin_bottom = 446.803
 
 [node name="C7" parent="ChessLocation/C" instance=ExtResource( 3 )]
 margin_left = 366.222
@@ -572,27 +440,27 @@ margin_bottom = 717.596
 
 [node name="D3" parent="ChessLocation/D" instance=ExtResource( 3 )]
 margin_left = 419.222
-margin_top = 606.775
+margin_top = 605.883
 margin_right = 469.222
-margin_bottom = 656.775
+margin_bottom = 655.883
 
 [node name="D4" parent="ChessLocation/D" instance=ExtResource( 3 )]
 margin_left = 419.222
-margin_top = 547.351
+margin_top = 546.459
 margin_right = 469.222
-margin_bottom = 597.351
+margin_bottom = 596.459
 
 [node name="D5" parent="ChessLocation/D" instance=ExtResource( 3 )]
 margin_left = 419.222
-margin_top = 486.929
+margin_top = 486.037
 margin_right = 469.222
-margin_bottom = 536.929
+margin_bottom = 536.037
 
 [node name="D6" parent="ChessLocation/D" instance=ExtResource( 3 )]
 margin_left = 419.222
-margin_top = 425.705
+margin_top = 424.813
 margin_right = 469.222
-margin_bottom = 475.705
+margin_bottom = 474.813
 
 [node name="D7" parent="ChessLocation/D" instance=ExtResource( 3 )]
 margin_left = 419.222
@@ -634,27 +502,27 @@ margin_bottom = 687.185
 
 [node name="E4" parent="ChessLocation/E" instance=ExtResource( 3 )]
 margin_left = 471.222
-margin_top = 577.76
+margin_top = 576.868
 margin_right = 521.222
-margin_bottom = 627.76
+margin_bottom = 626.868
 
 [node name="E5" parent="ChessLocation/E" instance=ExtResource( 3 )]
 margin_left = 471.222
-margin_top = 517.339
+margin_top = 516.447
 margin_right = 521.222
-margin_bottom = 567.339
+margin_bottom = 566.447
 
 [node name="E6" parent="ChessLocation/E" instance=ExtResource( 3 )]
 margin_left = 471.222
-margin_top = 456.115
+margin_top = 455.223
 margin_right = 521.222
-margin_bottom = 506.115
+margin_bottom = 505.223
 
 [node name="E7" parent="ChessLocation/E" instance=ExtResource( 3 )]
 margin_left = 471.222
-margin_top = 396.682
+margin_top = 395.79
 margin_right = 521.222
-margin_bottom = 446.682
+margin_bottom = 445.79
 
 [node name="E8" parent="ChessLocation/E" instance=ExtResource( 3 )]
 margin_left = 471.222
@@ -690,27 +558,27 @@ margin_bottom = 717.596
 
 [node name="F3" parent="ChessLocation/F" instance=ExtResource( 3 )]
 margin_left = 524.222
-margin_top = 606.775
+margin_top = 605.883
 margin_right = 574.222
-margin_bottom = 656.775
+margin_bottom = 655.883
 
 [node name="F4" parent="ChessLocation/F" instance=ExtResource( 3 )]
 margin_left = 524.222
-margin_top = 547.351
+margin_top = 546.459
 margin_right = 574.222
-margin_bottom = 597.351
+margin_bottom = 596.459
 
 [node name="F5" parent="ChessLocation/F" instance=ExtResource( 3 )]
 margin_left = 524.222
-margin_top = 486.929
+margin_top = 486.037
 margin_right = 574.222
-margin_bottom = 536.929
+margin_bottom = 536.037
 
 [node name="F6" parent="ChessLocation/F" instance=ExtResource( 3 )]
 margin_left = 524.222
-margin_top = 425.705
+margin_top = 424.813
 margin_right = 574.222
-margin_bottom = 475.705
+margin_bottom = 474.813
 
 [node name="F7" parent="ChessLocation/F" instance=ExtResource( 3 )]
 margin_left = 524.222
@@ -747,27 +615,27 @@ margin_bottom = 689.585
 
 [node name="G3" parent="ChessLocation/G" instance=ExtResource( 3 )]
 margin_left = 576.826
-margin_top = 578.764
+margin_top = 577.872
 margin_right = 626.828
-margin_bottom = 628.764
+margin_bottom = 627.872
 
 [node name="G4" parent="ChessLocation/G" instance=ExtResource( 3 )]
 margin_left = 576.826
-margin_top = 519.34
+margin_top = 518.448
 margin_right = 626.828
-margin_bottom = 569.34
+margin_bottom = 568.448
 
 [node name="G5" parent="ChessLocation/G" instance=ExtResource( 3 )]
 margin_left = 576.826
-margin_top = 458.919
+margin_top = 458.027
 margin_right = 626.828
-margin_bottom = 508.919
+margin_bottom = 508.027
 
 [node name="G6" parent="ChessLocation/G" instance=ExtResource( 3 )]
 margin_left = 576.826
-margin_top = 397.695
+margin_top = 396.803
 margin_right = 626.828
-margin_bottom = 447.695
+margin_bottom = 446.803
 
 [node name="G7" parent="ChessLocation/G" instance=ExtResource( 3 )]
 margin_left = 576.826
@@ -791,27 +659,27 @@ margin_bottom = 718.997
 
 [node name="H2" parent="ChessLocation/H" instance=ExtResource( 3 )]
 margin_left = 627.217
-margin_top = 608.374
+margin_top = 607.482
 margin_right = 677.217
-margin_bottom = 658.374
+margin_bottom = 657.482
 
 [node name="H3" parent="ChessLocation/H" instance=ExtResource( 3 )]
 margin_left = 627.217
-margin_top = 547.552
+margin_top = 546.66
 margin_right = 677.217
-margin_bottom = 597.552
+margin_bottom = 596.66
 
 [node name="H4" parent="ChessLocation/H" instance=ExtResource( 3 )]
 margin_left = 627.217
-margin_top = 488.128
+margin_top = 487.236
 margin_right = 677.217
-margin_bottom = 538.128
+margin_bottom = 537.236
 
 [node name="H5" parent="ChessLocation/H" instance=ExtResource( 3 )]
 margin_left = 627.217
-margin_top = 427.707
+margin_top = 426.815
 margin_right = 677.217
-margin_bottom = 477.707
+margin_bottom = 476.815
 
 [node name="H6" parent="ChessLocation/H" instance=ExtResource( 3 )]
 margin_left = 627.217
@@ -835,27 +703,27 @@ margin_bottom = 688.585
 
 [node name="I2" parent="ChessLocation/I" instance=ExtResource( 3 )]
 margin_left = 679.427
-margin_top = 577.962
+margin_top = 577.07
 margin_right = 729.427
-margin_bottom = 627.962
+margin_bottom = 627.07
 
 [node name="I3" parent="ChessLocation/I" instance=ExtResource( 3 )]
 margin_left = 679.427
-margin_top = 517.141
+margin_top = 516.249
 margin_right = 729.427
-margin_bottom = 567.141
+margin_bottom = 566.249
 
 [node name="I4" parent="ChessLocation/I" instance=ExtResource( 3 )]
 margin_left = 679.427
-margin_top = 457.717
+margin_top = 456.825
 margin_right = 729.427
-margin_bottom = 507.717
+margin_bottom = 506.825
 
 [node name="I5" parent="ChessLocation/I" instance=ExtResource( 3 )]
 margin_left = 679.427
-margin_top = 397.294
+margin_top = 396.402
 margin_right = 729.427
-margin_bottom = 447.294
+margin_bottom = 446.402
 
 [node name="I6" parent="ChessLocation/I" instance=ExtResource( 3 )]
 margin_left = 679.427

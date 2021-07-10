@@ -1,8 +1,9 @@
 [gd_scene format=2]
 
 [node name="Slot" type="Button"]
-margin_left = -0.141994
-margin_right = 44.858
+anchor_left = -0.000205688
+anchor_right = -0.000205688
+margin_right = 45.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_lock_": true,

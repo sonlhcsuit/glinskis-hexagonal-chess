@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/hex-5x5x6.png" type="Texture" id=1]
+[ext_resource path="res://assets/chess-board-70.png" type="Texture" id=1]
 
 [node name="BoardImage" type="TextureRect"]
 anchor_left = 0.000979614

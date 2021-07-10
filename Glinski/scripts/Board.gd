@@ -1,32 +1,39 @@
 extends TextureRect
 
+var file_offsets = [
+	[6,35,570],
+	[7,105,610],
+	[8,175,650],
+	[9,245,690],
+	[10,315,730],
+	[9,385,690],
+	[8,455,650],
+	[7,525,610],
+	[6,595,570],
+]
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
+
+func move(piece,slot):
+	pass
+func arrange_slots():
+	var index = 1
+	for file_offset in file_offsets:
+		var x_offset = file_offset[1]
+		var y_offset = file_offset[2]
+		for _i in range(file_offset[0]):
+			var path = "Slots/Slot{i}".format({"i":index})
+			var btn: Button = get_node(path)
+			btn.text = str(index)
+			btn.set_position(Vector2(x_offset,y_offset))
+			index = index + 1
+			y_offset = y_offset - 80
+			
+
 func _ready():
-	var x: float = 35
-	var y: float = 570
-	for i in range(1,6):
-		var path = "Slots/Slot{index}".format({"index":i})
-		var node:Button = get_node(path)
-		get_node("Slots/Slot1")
-		node.set_position(Vector2(x,y))
-		y=y-80
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	arrange_slots()
 	pass # Replace with function body.
 
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1280px-Chess_Pieces_Sprite.svg.png-53c5bc0c1082337856e5d660268d163e.stex"
+path="res://.import/chess-pieces-sprite-svg.svg-cf4901869ccd479715f2d803a8bd8cbe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1280px-Chess_Pieces_Sprite.svg.png"
-dest_files=[ "res://.import/1280px-Chess_Pieces_Sprite.svg.png-53c5bc0c1082337856e5d660268d163e.stex" ]
+source_file="res://assets/chess-pieces-sprite-svg.svg"
+dest_files=[ "res://.import/chess-pieces-sprite-svg.svg-cf4901869ccd479715f2d803a8bd8cbe.stex" ]
 
 [params]
 
@@ -31,4 +31,4 @@ process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=1.0
+svg/scale=3.0

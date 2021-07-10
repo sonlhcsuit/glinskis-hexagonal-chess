@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chess-piece-drawing-the-boy-with-the-blue-eyes-bishop-chess-png-clip-art.png-c0d5d2c9893caee00f3b787327cfc5aa.stex"
+path="res://.import/left-arrow.png-dba40b976d75597dca4e8b8a98b7b10b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chess-piece-drawing-the-boy-with-the-blue-eyes-bishop-chess-png-clip-art.png"
-dest_files=[ "res://.import/chess-piece-drawing-the-boy-with-the-blue-eyes-bishop-chess-png-clip-art.png-c0d5d2c9893caee00f3b787327cfc5aa.stex" ]
+source_file="res://assets/left-arrow.png"
+dest_files=[ "res://.import/left-arrow.png-dba40b976d75597dca4e8b8a98b7b10b.stex" ]
 
 [params]
 

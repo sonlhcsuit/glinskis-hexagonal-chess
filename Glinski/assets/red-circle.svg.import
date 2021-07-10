@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Chess_Pieces_Sprite.svg-c80727a0f92e2a11d34168893273e4f5.stex"
+path="res://.import/red-circle.svg-d1c14430962a7472e41d7c404570ae79.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Chess_Pieces_Sprite.svg"
-dest_files=[ "res://.import/Chess_Pieces_Sprite.svg-c80727a0f92e2a11d34168893273e4f5.stex" ]
+source_file="res://assets/red-circle.svg"
+dest_files=[ "res://.import/red-circle.svg-d1c14430962a7472e41d7c404570ae79.stex" ]
 
 [params]
 
