@@ -3,6 +3,17 @@ WHITE, BLACK = "WHITE", "BLACK"
 
 
 class Pieces(object):
+    PAWN = 1
+    KNIGHT = 2
+    BISHOP = 3
+    ROOK = 4
+    QUEEN = 5
+    KING = 6
+    WHITE = 8
+    BLACK = 16
+
+
+
     def __init__(self, team, type, position):
         self.position = position  # string
         self.type = type  # string
@@ -21,6 +32,12 @@ class Pieces(object):
             self.value = coefficent * 250
         elif type == KING:
             self.value = coefficent * 900
+
+    def team(self):
+        return Pieces.BLACK if self.value > Pieces.BLACK else Pieces.WHITE
+
+    def value(self):
+        return self.value;
 
     def valid_position(self, position):
         if position[0] == 'A' or position[0] == 'I':
