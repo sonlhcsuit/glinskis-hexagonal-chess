@@ -159,6 +159,7 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="VBoxContainer/DETAIL" to="." method="_on_DETAIL_pressed"]
 [connection signal="pressed" from="VBoxContainer/PAWN" to="." method="_on_PAWN_pressed"]
 [connection signal="pressed" from="VBoxContainer/KNIGHT" to="." method="_on_KNIGHT_pressed"]

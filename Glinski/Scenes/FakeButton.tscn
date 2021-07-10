@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/Redpoint.svg" type="Texture" id=1]
 
-
 [node name="TextureButton" type="TextureButton"]
 margin_right = 50.0
 margin_bottom = 50.0

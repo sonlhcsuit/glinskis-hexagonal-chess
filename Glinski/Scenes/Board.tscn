@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/hex-5x5x6.png" type="Texture" id=1]
+
+[node name="BoardImage" type="TextureRect"]
+anchor_left = 0.000979614
+anchor_top = 6.10352e-08
+anchor_right = 0.000979614
+anchor_bottom = 6.10352e-08
+margin_left = 2.38419e-07
+margin_top = -6.10948e-05
+margin_right = 672.0
+margin_bottom = 816.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

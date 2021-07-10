@@ -11,22 +11,12 @@ font_data = ExtResource( 2 )
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = -0.889038
-margin_top = 3.55612
-margin_right = 799.111
-margin_bottom = 803.556
-color = Color( 0.0235294, 0.368627, 0.333333, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 1.64972
-margin_top = -0.824829
+margin_top = 1.3483
 margin_right = 801.65
-margin_bottom = 799.175
-color = Color( 0.113725, 0.717647, 0.729412, 1 )
+margin_bottom = 801.348
+color = Color( 0.501961, 0.847059, 1, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -97,7 +87,6 @@ __meta__ = {
 }
 
 [node name="PopupDialog" type="PopupDialog" parent="."]
-visible = true
 margin_left = 275.0
 margin_top = 150.0
 margin_right = 575.0
