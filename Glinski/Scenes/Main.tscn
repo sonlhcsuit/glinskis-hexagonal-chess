@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Slot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/FakeButton.tscn" type="PackedScene" id=3]
@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=16]
 [ext_resource path="res://5eba9a49ae6b7.png" type="Texture" id=17]
 [ext_resource path="res://scripts/Board.gd" type="Script" id=18]
-[ext_resource path="res://Scenes/Piece.tscn" type="PackedScene" id=19]
 [ext_resource path="res://robotTheme.tres" type="Theme" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -63,13 +62,13 @@ margin_right = 836.0
 margin_bottom = 908.0
 script = ExtResource( 18 )
 
+[node name="Pieces" type="Node2D" parent="CenterContainer/Board"]
+visible = false
+
 [node name="Slots" type="Node2D" parent="CenterContainer/Board"]
 
 [node name="Slot1" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-margin_left = 311.807
-margin_top = 727.275
-margin_right = 356.807
-margin_bottom = 807.275
+anchor_right = 0.0
 
 [node name="Slot2" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
@@ -276,23 +275,26 @@ margin_right = 44.716
 [node name="Slot69" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
 [node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-margin_left = 0.115417
-margin_top = -1.59756
-margin_right = 45.1154
-margin_bottom = 78.4024
+margin_left = 175.904
+margin_top = 246.006
+margin_right = 220.904
+margin_bottom = 326.006
 
-[node name="TextureRect" parent="CenterContainer/Board" instance=ExtResource( 19 )]
-anchor_top = 0.00031116
-anchor_bottom = 0.00031116
-margin_left = -96.916
-margin_top = 408.688
-margin_right = 38.084
-margin_bottom = 543.688
+[node name="Label" type="Label" parent="CenterContainer/Board"]
+visible = false
+margin_left = -0.805969
+margin_top = 135.404
+margin_right = 39.194
+margin_bottom = 149.404
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ChessLocation" type="Node2D" parent="."]
 visible = false
 
 [node name="A" type="Node2D" parent="ChessLocation"]
+visible = false
 
 [node name="A1" parent="ChessLocation/A" instance=ExtResource( 3 )]
 margin_left = 262.224
@@ -853,4 +855,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="CenterContainer/Board/Slots/Slot1" to="CenterContainer/Board/Slots/Slot1" method="_on_Slot1_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

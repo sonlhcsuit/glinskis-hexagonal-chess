@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a7c2911e-2342-459b-8acc-90773ad813f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dev.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glinski/Scenes/Main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/Scenes/Main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glinski/Scenes/Slot.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/Scenes/Slot.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glinski/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glinski/scripts/Board.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/scripts/Board.gd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,8 +90,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.server" />
       <item itemvalue="Python.dev" />
+      <item itemvalue="Python.server" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -111,6 +114,7 @@
       <workItem from="1625719683503" duration="934000" />
       <workItem from="1625913645182" duration="4288000" />
       <workItem from="1625926501031" duration="4227000" />
+      <workItem from="1626074169290" duration="577000" />
     </task>
     <servers />
   </component>
@@ -130,7 +134,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="dev Coverage Results" MODIFIED="1625932905032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="dev Coverage Results" MODIFIED="1626074173925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$server.coverage" NAME="server Coverage Results" MODIFIED="1625716661305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Backend" />
   </component>
 </project>
