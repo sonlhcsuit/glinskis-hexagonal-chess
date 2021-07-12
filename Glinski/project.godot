@@ -25,7 +25,6 @@ config/icon="res://assets/icon.png"
 window/size/width=1000
 window/size/height=1000
 window/size/resizable=false
-window/size/always_on_top=true
 
 [global]
 

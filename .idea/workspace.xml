@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c2911e-2342-459b-8acc-90773ad813f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/python/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/.import/5eba9a49ae6b7.png-2df1949228162b0fa0eac5720c8d368c.stex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/5eba9a49ae6b7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/5eba9a49ae6b7.png.import" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/Scenes/Guide.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/Scenes/Guide.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Glinski/Scenes/Main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/Scenes/Main.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/Scenes/Slot.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/Scenes/Slot.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Glinski/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/project.godot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Glinski/scripts/Board.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/scripts/Board.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/scripts/Slot.gd" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/scripts/Slot.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Glinski/sprites/circle.tres" beforeDir="false" afterPath="$PROJECT_DIR$/Glinski/sprites/circle.tres" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/dev.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +115,7 @@
       <workItem from="1625719683503" duration="934000" />
       <workItem from="1625913645182" duration="4288000" />
       <workItem from="1625926501031" duration="4227000" />
-      <workItem from="1626074169290" duration="1437000" />
+      <workItem from="1626074169290" duration="3181000" />
     </task>
     <servers />
   </component>
@@ -140,7 +135,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="dev Coverage Results" MODIFIED="1626077721380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="dev Coverage Results" MODIFIED="1626087715856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$server.coverage" NAME="server Coverage Results" MODIFIED="1625716661305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Backend" />
   </component>
 </project>

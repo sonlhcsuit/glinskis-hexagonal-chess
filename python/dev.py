@@ -25,7 +25,7 @@ def neighbor(board_number: int) -> tuple:
             elif board_number == key_values[i] and board_number < 31:
                 result[3] = result[4] = 0
             elif board_number == key_values[i] and board_number > 31:
-                result[3] = result[4] = 0
+                result[2] = result[3] = 0
             elif board_number == key_values[i - 1] - 1 and board_number < 40:
                 result[0] = result[5] = 0
             elif board_number == key_values[i - 1] - 1 and board_number > 40:
@@ -125,5 +125,5 @@ print(notation)
 print(default_board)
 print(decode_notation(notation))
 #
-# for i in range(1, 71):
-#     print(f"{i} {neighbor(i)}")
+for i in range(1, 71):
+    print(f"{i} {neighbor(i)}")

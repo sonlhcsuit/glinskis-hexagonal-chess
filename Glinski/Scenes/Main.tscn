@@ -277,7 +277,6 @@ margin_right = 44.716
 [node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
 [node name="Label" type="Label" parent="CenterContainer/Board"]
-visible = false
 margin_left = -0.805969
 margin_top = 135.404
 margin_right = 39.194

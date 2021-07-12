@@ -4,7 +4,16 @@ extends TextureRect
 var default_state:Array = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var PIECES = 'pnbrqk//PNBRQK//'
 
-var state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
+var state = [0, 0, 0, 0, 0, 0, 12, 9, 17, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
+
+var knight_set = [
+	[5,1],
+	[0,2],
+	[1,3],
+	[2,4],
+	[3,5],
+	[4,0],
+]
 
 ## columns offets
 var file_offsets = [
@@ -35,7 +44,7 @@ var piece_resources:Dictionary = {
 
 func neighbor(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
-		assert(true,"Board number are not valid, must in the range [1,70]")
+		assert(false,"Board number are not valid, must in the range [1,70]")
 	var result = [board_number,board_number,board_number,board_number,board_number,board_number ]
 	var key_values = [65, 58, 50, 41, 31, 22, 14, 7, 1]
 	var offset = [
@@ -69,8 +78,8 @@ func neighbor(board_number: int) -> Array:
 				result[3] = 0
 				result[4] = 0
 			elif board_number == key_values[i] and board_number > 31:
+				result[2] = 0
 				result[3] = 0
-				result[4] = 0
 			elif board_number == key_values[i - 1] - 1 and board_number < 40:
 				result[0] = 0
 				result[5] = 0
@@ -86,11 +95,45 @@ func neighbor(board_number: int) -> Array:
 	return result
 
 
+func log_message(message:String)->void:
+	$Label.text = message
+
+func legal_slot(slot:int,white:bool)->bool:
+	if slot == 0:
+		return false
+	if state[slot - 1] == 0:
+		return true
+	if white:
+#		must be black piece
+		return state[slot - 1] > 16 
+	else:
+#		must be white piece
+		return state[slot -1 ] > 8 and state[slot -1 ] < 16
+
+func knight_move(slot_value:int,state:Array,white:bool)-> Array:
+	var moves = []
+	var neighbors = neighbor(slot_value)
+	for i in range(6):
+		if neighbors[i] != 0:
+			var n = neighbor(neighbors[i])[i]
+			if n != 0:
+				var offset = neighbor(n)
+				var move_1 = offset[knight_set[i][0]]
+				var move_2 = offset[knight_set[i][1]]
+				if legal_slot(move_1,white):
+					moves.append(move_1)
+				if legal_slot(move_2,white):
+					moves.append(move_2)
+	return moves
+
 func next_move_of_piece(slot_value:int,state:Array) -> Array:
-	var piece_value = state[slot_value]
+	if len(state) != 70 or slot_value > 70 :
+		assert(false,"State of the game is not valid")
+	var piece_value = state[slot_value -1]
 	var next_moves:Array = []
 	var white = true
-	var result = []
+	var moves = []
+	
 	if piece_value > 16 :
 		piece_value = piece_value - 16
 		white = false
@@ -98,17 +141,32 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		piece_value = piece_value - 8
 		
 	if piece_value == 1:
+#		pawn next moves
 		var neighbors = neighbor(slot_value)
-
+		log_message(String(neighbors))
 		if white:
-#			if neighbors[0])!=0:
-			result.append(neighbors[0])
-#			result.append(neighbors[1])
+			var top = neighbors[0]
+			var top_left = neighbors[1]
+			var top_right = neighbors[5]
+			if state[top-1] == 0:
+				moves.append(top)
+			if state[top_left-1] - 16 > 0 :
+				moves.append(top_left)
+			if state[top_right-1] -16 > 0:
+				moves.append(top_right) 
 		else:
-#			result.append(neighbors[])
-			result.append(neighbors[3])
+			var bottom = neighbors[3]
+			var bottom_left = neighbors[4]
+			var bottom_right = neighbors[2]
+			if state[bottom-1] == 0:
+				moves.append(bottom)
+			if state[bottom_left-1] > 8  and state[bottom_left-1] < 16:
+				moves.append(bottom_left)
+			if state[bottom_right-1] > 8 and state[bottom_right-1] < 16   :
+				moves.append(bottom_right)
 	elif piece_value == 2:
-		pass
+#		knight
+		moves = knight_move(slot_value,state,white)
 	elif piece_value == 3:
 		pass
 	elif piece_value == 4:
@@ -117,10 +175,11 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		pass
 	elif piece_value == 6:
 		pass
-	return result
+	return moves
 
 func next_move_of(pos):
-	var moves = next_move_of_piece(default_state[pos-1],pos)
+	
+	var moves = next_move_of_piece(pos,state)
 	for move in moves:
 		var path_str = "Slots/Slot{i}".format({"i":move})
 		var slot:TextureButton = get_node(path_str)
@@ -176,6 +235,7 @@ func arrange_slots():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arrange_slots()
+	state[25] = 10
 	render_state(state)
 	pass # Replace with function body.
 
