@@ -1,7 +1,10 @@
 extends TextureRect
 
+
+var default_state:Array = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var PIECES = 'pnbrqk//PNBRQK//'
-var defaul_state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 0, 17, 0, 22, 10, 0, 9, 0, 0, 0, 17, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
+
+var state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 
 ## columns offets
 var file_offsets = [
@@ -30,8 +33,100 @@ var piece_resources:Dictionary = {
 	22:"res://sprites/king_b.tres"
 }
 
+func neighbor(board_number: int) -> Array:
+	if not (0 < board_number and board_number < 71):
+		assert(true,"Board number are not valid, must in the range [1,70]")
+	var result = [board_number,board_number,board_number,board_number,board_number,board_number ]
+	var key_values = [65, 58, 50, 41, 31, 22, 14, 7, 1]
+	var offset = [
+		[1, 6, 5, -1, -7, -6],
+		[1, 7, 6, -1, -8, -7],
+		[1, 8, 7, -1, -9, -8],
+		[1, 9, 8, -1, -10, -9],
+		[1, 10, 9, -1, -10, -9],
+		[1, 10, 9, -1, -9, -8],
+		[1, 9, 8, -1, -8, -7],
+		[1, 8, 7, -1, -7, -6],
+		[1, 7, 6, -1, -6, -5],
+	]
+	for i in range(len(key_values)):
+		
+		if board_number >= key_values[i]:
+			var off = offset[i]
+			
+			for j in range(len(result)):
+				result[j] = result[j] + off[j] 
+				
+			if board_number == 40:
+				result[0] = 0
+				result[1] = 0
+				result[5] = 0
+			elif board_number == 31:
+				result[2] = 0
+				result[3] = 0
+				result[4] = 0
+			elif board_number == key_values[i] and board_number < 31:
+				result[3] = 0
+				result[4] = 0
+			elif board_number == key_values[i] and board_number > 31:
+				result[3] = 0
+				result[4] = 0
+			elif board_number == key_values[i - 1] - 1 and board_number < 40:
+				result[0] = 0
+				result[5] = 0
+			elif board_number == key_values[i - 1] - 1 and board_number > 40:
+				result[0] = 0
+				result[1] = 0
+				
+			for k in range(len(result)):
+				if not (0 <= result[k] and result[k] <= 70):
+					result[k] = 0
+				
+			break
+	return result
 
-# Called when the node enters the scene tree for the first time.
+
+func next_move_of_piece(slot_value:int,state:Array) -> Array:
+	var piece_value = state[slot_value]
+	var next_moves:Array = []
+	var white = true
+	var result = []
+	if piece_value > 16 :
+		piece_value = piece_value - 16
+		white = false
+	else:
+		piece_value = piece_value - 8
+		
+	if piece_value == 1:
+		var neighbors = neighbor(slot_value)
+
+		if white:
+#			if neighbors[0])!=0:
+			result.append(neighbors[0])
+#			result.append(neighbors[1])
+		else:
+#			result.append(neighbors[])
+			result.append(neighbors[3])
+	elif piece_value == 2:
+		pass
+	elif piece_value == 3:
+		pass
+	elif piece_value == 4:
+		pass
+	elif piece_value == 5:
+		pass
+	elif piece_value == 6:
+		pass
+	return result
+
+func next_move_of(pos):
+	var moves = next_move_of_piece(default_state[pos-1],pos)
+	for move in moves:
+		var path_str = "Slots/Slot{i}".format({"i":move})
+		var slot:TextureButton = get_node(path_str)
+		if slot.has_method("trigger_image"):
+			slot.trigger_image()
+
 
 func create_piece(value:int)->TextureRect:
 	var resource = piece_resources[value]
@@ -42,7 +137,17 @@ func create_piece(value:int)->TextureRect:
 	piece.set_scale(Vector2(0.5,0.5))
 	return piece
 	
-
+func render_state(state:Array)->void:
+	
+	for i in range(len(state)):
+		if state[i]!=0:
+			var piece = create_piece(state[i])
+			var path_str = "Slots/Slot{i}".format({"i":i+1})
+			var slot:TextureButton = get_node(path_str)
+			slot.connect("pressed",self,"next_move_of",[i+1])
+			move_to_slot(piece,slot)
+			$Pieces.add_child(piece)
+	
 func move_to_slot(piece:TextureRect, slot:TextureButton):
 	var slot_position:Vector2 = slot.get_position()
 	var slot_size:Vector2 = slot.get_size()
@@ -53,7 +158,8 @@ func move_to_slot(piece:TextureRect, slot:TextureButton):
 		slot_position.y - (piece_size.y - slot_size.y)/2
 		)
 	piece.set_position(newpos)
-	pass
+	
+	
 func arrange_slots():
 	var index = 1
 	for file_offset in file_offsets:
@@ -61,23 +167,17 @@ func arrange_slots():
 		var y_offset = file_offset[2]
 		for _i in range(file_offset[0]):
 			var path = "Slots/Slot{i}".format({"i":index})
-#			var btn: Button = get_node(path)
 			var btn: TextureButton= get_node(path)
-			
-#			btn.text = str(index)
 			btn.set_position(Vector2(x_offset,y_offset))
 			index = index + 1
 			y_offset = y_offset - 80
 			
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	arrange_slots()
-	
-	var piece = create_piece(9)
-	move_to_slot(piece,$Slots/Slot1)
-	$Pieces.add_child(piece)
+	render_state(state)
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

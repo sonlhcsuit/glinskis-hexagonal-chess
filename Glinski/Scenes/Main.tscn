@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Slot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/FakeButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=16]
-[ext_resource path="res://5eba9a49ae6b7.png" type="Texture" id=17]
 [ext_resource path="res://scripts/Board.gd" type="Script" id=18]
 [ext_resource path="res://robotTheme.tres" type="Theme" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/5eba9a49ae6b7.png-2df1949228162b0fa0eac5720c8d368c.stex"
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends PopupDialog
@@ -63,12 +65,10 @@ margin_bottom = 908.0
 script = ExtResource( 18 )
 
 [node name="Pieces" type="Node2D" parent="CenterContainer/Board"]
-visible = false
 
 [node name="Slots" type="Node2D" parent="CenterContainer/Board"]
 
 [node name="Slot1" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-anchor_right = 0.0
 
 [node name="Slot2" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
@@ -275,10 +275,6 @@ margin_right = 44.716
 [node name="Slot69" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
 [node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
-margin_left = 175.904
-margin_top = 246.006
-margin_right = 220.904
-margin_bottom = 326.006
 
 [node name="Label" type="Label" parent="CenterContainer/Board"]
 visible = false
@@ -289,449 +285,6 @@ margin_bottom = 149.404
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ChessLocation" type="Node2D" parent="."]
-visible = false
-
-[node name="A" type="Node2D" parent="ChessLocation"]
-visible = false
-
-[node name="A1" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 638.585
-margin_right = 312.223
-margin_bottom = 688.585
-
-[node name="A2" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 578.07
-margin_right = 312.223
-margin_bottom = 628.07
-
-[node name="A3" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 516.249
-margin_right = 312.223
-margin_bottom = 566.249
-
-[node name="A4" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 456.825
-margin_right = 312.223
-margin_bottom = 506.825
-
-[node name="A5" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 396.402
-margin_right = 312.223
-margin_bottom = 446.402
-
-[node name="A6" parent="ChessLocation/A" instance=ExtResource( 3 )]
-margin_left = 262.224
-margin_top = 336.07
-margin_right = 312.223
-margin_bottom = 386.07
-
-[node name="B" type="Node2D" parent="ChessLocation"]
-
-[node name="B1" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 668.997
-margin_right = 366.222
-margin_bottom = 718.997
-
-[node name="B2" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 607.482
-margin_right = 366.222
-margin_bottom = 657.482
-
-[node name="B3" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 546.66
-margin_right = 366.222
-margin_bottom = 596.66
-
-[node name="B4" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 487.236
-margin_right = 366.222
-margin_bottom = 537.236
-
-[node name="B5" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 426.815
-margin_right = 366.222
-margin_bottom = 476.815
-
-[node name="B6" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 366.483
-margin_right = 366.222
-margin_bottom = 416.483
-
-[node name="B7" parent="ChessLocation/B" instance=ExtResource( 3 )]
-margin_left = 316.222
-margin_top = 307.051
-margin_right = 366.222
-margin_bottom = 357.051
-
-[node name="C" type="Node2D" parent="ChessLocation"]
-
-[node name="C1" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 700.208
-margin_right = 416.222
-margin_bottom = 750.208
-
-[node name="C2" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 639.585
-margin_right = 416.222
-margin_bottom = 689.585
-
-[node name="C3" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 577.872
-margin_right = 416.222
-margin_bottom = 627.872
-
-[node name="C4" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 518.448
-margin_right = 416.222
-margin_bottom = 568.448
-
-[node name="C5" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 458.027
-margin_right = 416.222
-margin_bottom = 508.027
-
-[node name="C6" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 396.803
-margin_right = 416.222
-margin_bottom = 446.803
-
-[node name="C7" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 338.263
-margin_right = 416.222
-margin_bottom = 388.263
-
-[node name="C8" parent="ChessLocation/C" instance=ExtResource( 3 )]
-margin_left = 366.222
-margin_top = 278.039
-margin_right = 416.222
-margin_bottom = 328.039
-
-[node name="D" type="Node2D" parent="ChessLocation"]
-
-[node name="D1" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 728.219
-margin_right = 469.222
-margin_bottom = 778.219
-
-[node name="D2" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 667.596
-margin_right = 469.222
-margin_bottom = 717.596
-
-[node name="D3" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 605.883
-margin_right = 469.222
-margin_bottom = 655.883
-
-[node name="D4" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 546.459
-margin_right = 469.222
-margin_bottom = 596.459
-
-[node name="D5" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 486.037
-margin_right = 469.222
-margin_bottom = 536.037
-
-[node name="D6" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 424.813
-margin_right = 469.222
-margin_bottom = 474.813
-
-[node name="D7" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 366.273
-margin_right = 469.222
-margin_bottom = 416.273
-
-[node name="D8" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 306.051
-margin_right = 469.222
-margin_bottom = 356.051
-
-[node name="D9" parent="ChessLocation/D" instance=ExtResource( 3 )]
-margin_left = 419.222
-margin_top = 247.429
-margin_right = 469.222
-margin_bottom = 297.43
-
-[node name="E" type="Node2D" parent="ChessLocation"]
-
-[node name="E1" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 758.628
-margin_right = 521.222
-margin_bottom = 808.628
-
-[node name="E2" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 698.005
-margin_right = 521.222
-margin_bottom = 748.005
-
-[node name="E3" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 637.185
-margin_right = 521.222
-margin_bottom = 687.185
-
-[node name="E4" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 576.868
-margin_right = 521.222
-margin_bottom = 626.868
-
-[node name="E5" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 516.447
-margin_right = 521.222
-margin_bottom = 566.447
-
-[node name="E6" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 455.223
-margin_right = 521.222
-margin_bottom = 505.223
-
-[node name="E7" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 395.79
-margin_right = 521.222
-margin_bottom = 445.79
-
-[node name="E8" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 336.461
-margin_right = 521.222
-margin_bottom = 386.461
-
-[node name="E9" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 277.84
-margin_right = 521.222
-margin_bottom = 327.84
-
-[node name="E10" parent="ChessLocation/E" instance=ExtResource( 3 )]
-margin_left = 471.222
-margin_top = 219.217
-margin_right = 521.222
-margin_bottom = 269.218
-
-[node name="F" type="Node2D" parent="ChessLocation"]
-
-[node name="F1" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 728.219
-margin_right = 574.222
-margin_bottom = 778.219
-
-[node name="F2" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 667.596
-margin_right = 574.222
-margin_bottom = 717.596
-
-[node name="F3" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 605.883
-margin_right = 574.222
-margin_bottom = 655.883
-
-[node name="F4" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 546.459
-margin_right = 574.222
-margin_bottom = 596.459
-
-[node name="F5" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 486.037
-margin_right = 574.222
-margin_bottom = 536.037
-
-[node name="F6" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 424.813
-margin_right = 574.222
-margin_bottom = 474.813
-
-[node name="F7" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 366.273
-margin_right = 574.222
-margin_bottom = 416.273
-
-[node name="F8" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 306.051
-margin_right = 574.222
-margin_bottom = 356.051
-
-[node name="F9" parent="ChessLocation/F" instance=ExtResource( 3 )]
-margin_left = 524.222
-margin_top = 247.429
-margin_right = 574.222
-margin_bottom = 297.43
-
-[node name="G" type="Node2D" parent="ChessLocation"]
-z_as_relative = false
-
-[node name="G1" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 700.208
-margin_right = 626.828
-margin_bottom = 750.208
-
-[node name="G2" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 639.585
-margin_right = 626.828
-margin_bottom = 689.585
-
-[node name="G3" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 577.872
-margin_right = 626.828
-margin_bottom = 627.872
-
-[node name="G4" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 518.448
-margin_right = 626.828
-margin_bottom = 568.448
-
-[node name="G5" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 458.027
-margin_right = 626.828
-margin_bottom = 508.027
-
-[node name="G6" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 396.803
-margin_right = 626.828
-margin_bottom = 446.803
-
-[node name="G7" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 338.263
-margin_right = 626.828
-margin_bottom = 388.263
-
-[node name="G8" parent="ChessLocation/G" instance=ExtResource( 3 )]
-margin_left = 576.826
-margin_top = 278.039
-margin_right = 626.828
-margin_bottom = 328.039
-
-[node name="H" type="Node2D" parent="ChessLocation"]
-
-[node name="H1" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 668.997
-margin_right = 677.217
-margin_bottom = 718.997
-
-[node name="H2" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 607.482
-margin_right = 677.217
-margin_bottom = 657.482
-
-[node name="H3" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 546.66
-margin_right = 677.217
-margin_bottom = 596.66
-
-[node name="H4" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 487.236
-margin_right = 677.217
-margin_bottom = 537.236
-
-[node name="H5" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 426.815
-margin_right = 677.217
-margin_bottom = 476.815
-
-[node name="H6" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 366.483
-margin_right = 677.217
-margin_bottom = 416.483
-
-[node name="H7" parent="ChessLocation/H" instance=ExtResource( 3 )]
-margin_left = 627.217
-margin_top = 307.051
-margin_right = 677.217
-margin_bottom = 357.051
-
-[node name="I" type="Node2D" parent="ChessLocation"]
-
-[node name="I1" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 638.585
-margin_right = 729.427
-margin_bottom = 688.585
-
-[node name="I2" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 577.07
-margin_right = 729.427
-margin_bottom = 627.07
-
-[node name="I3" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 516.249
-margin_right = 729.427
-margin_bottom = 566.249
-
-[node name="I4" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 456.825
-margin_right = 729.427
-margin_bottom = 506.825
-
-[node name="I5" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 396.402
-margin_right = 729.427
-margin_bottom = 446.402
-
-[node name="I6" parent="ChessLocation/I" instance=ExtResource( 3 )]
-margin_left = 679.427
-margin_top = 336.07
-margin_right = 729.427
-margin_bottom = 386.07
 
 [node name="Action" type="Label" parent="."]
 visible = false
@@ -794,7 +347,7 @@ margin_top = 17.3727
 margin_right = 6268.32
 margin_bottom = 2457.37
 rect_scale = Vector2( 0.01, 0.01 )
-texture_normal = ExtResource( 17 )
+texture_normal = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -855,5 +408,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="CenterContainer/Board/Slots/Slot1" to="CenterContainer/Board/Slots/Slot1" method="_on_Slot1_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
