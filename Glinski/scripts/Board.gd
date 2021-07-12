@@ -126,6 +126,22 @@ func knight_move(slot_value:int,state:Array,white:bool)-> Array:
 					moves.append(move_2)
 	return moves
 
+func bishop_move(slot_value:int,state:Array,white:bool)-> Array:
+	var moves = []
+	var neighbors = neighbor(slot_value)
+	for i in range(6):
+		if neighbors[i] != 0:
+			var n = neighbor(neighbors[i])[i]
+			if n != 0:
+				var offset = neighbor(n)
+				var move_1 = offset[knight_set[i][0]]
+				var move_2 = offset[knight_set[i][1]]
+				if legal_slot(move_1,white):
+					moves.append(move_1)
+				if legal_slot(move_2,white):
+					moves.append(move_2)
+	return moves
+
 func next_move_of_piece(slot_value:int,state:Array) -> Array:
 	if len(state) != 70 or slot_value > 70 :
 		assert(false,"State of the game is not valid")
@@ -168,7 +184,8 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 #		knight
 		moves = knight_move(slot_value,state,white)
 	elif piece_value == 3:
-		pass
+#		bishop
+		moves = bishop_move(slot_value,state,white)
 	elif piece_value == 4:
 		pass
 	elif piece_value == 5:
@@ -235,7 +252,7 @@ func arrange_slots():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arrange_slots()
-	state[25] = 10
+	state[26] = 11
 	render_state(state)
 	pass # Replace with function body.
 
