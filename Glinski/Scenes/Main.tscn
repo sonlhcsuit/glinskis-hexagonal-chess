@@ -65,213 +65,213 @@ script = ExtResource( 18 )
 
 [node name="Slots" type="Node2D" parent="CenterContainer/Board"]
 
-[node name="Slot1" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_1" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot2" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_2" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot3" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_3" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot4" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_4" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot5" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_5" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot6" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_6" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot7" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_7" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot8" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_8" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot9" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_9" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot10" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_10" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot11" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_11" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot12" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_12" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot13" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_13" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot14" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_14" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot15" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_15" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot16" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_16" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot17" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_17" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot18" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_18" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot19" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_19" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot20" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_20" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot21" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_21" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot22" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_22" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot23" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_23" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot24" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_24" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot25" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_25" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot26" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_26" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot27" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_27" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot28" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_28" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot29" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_29" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot30" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_30" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot31" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_31" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot32" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_32" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot33" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_33" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot34" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_34" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot35" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_35" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot36" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_36" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot37" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_37" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot38" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_38" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot39" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_39" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot40" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_40" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot41" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_41" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot42" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_42" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot43" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_43" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot44" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_44" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot45" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_45" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot46" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_46" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot47" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_47" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot48" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_48" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot49" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_49" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot50" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_50" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot51" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_51" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot52" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_52" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot53" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_53" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot54" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_54" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot55" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_55" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot56" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_56" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot57" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_57" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot58" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_58" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot59" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_59" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot60" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_60" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot61" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_61" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot62" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_62" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot63" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_63" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot64" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_64" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot65" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_65" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot66" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_66" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot67" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_67" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot68" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_68" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 margin_left = -0.283997
 margin_right = 44.716
 
-[node name="Slot69" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_69" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
-[node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
+[node name="Slot_70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
 [node name="Pieces" type="Node2D" parent="CenterContainer/Board"]
 

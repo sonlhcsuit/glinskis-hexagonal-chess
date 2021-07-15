@@ -84,8 +84,6 @@ func get_neighbors_of(board_number: int) -> Array:
 	return result
 
 
-func log_message(message:String)->void:
-	$Label.text = message
 #
 #func legal_slot(slot:int,white:bool)->bool:
 #	if slot == 0:
@@ -190,23 +188,26 @@ func log_message(message:String)->void:
 #	return moves
 #
 
+
 var _value:int = 0
+var _slot:int = 0
 var piece_resources:Dictionary = {
-9:"res://sprites/pawn.tres",
-10:"res://sprites/knight.tres",
-11:"res://sprites/bishop.tres",
-12:"res://sprites/rook.tres",
-13:"res://sprites/queen.tres",
-14:"res://sprites/king.tres",
-17:"res://sprites/pawn_b.tres",
-18:"res://sprites/knight_b.tres",
-19:"res://sprites/bishop_b.tres",
-20:"res://sprites/rook_b.tres",
-21:"res://sprites/queen_b.tres",
-22:"res://sprites/king_b.tres"
+	9:"res://sprites/pawn.tres",
+	10:"res://sprites/knight.tres",
+	11:"res://sprites/bishop.tres",
+	12:"res://sprites/rook.tres",
+	13:"res://sprites/queen.tres",
+	14:"res://sprites/king.tres",
+	17:"res://sprites/pawn_b.tres",
+	18:"res://sprites/knight_b.tres",
+	19:"res://sprites/bishop_b.tres",
+	20:"res://sprites/rook_b.tres",
+	21:"res://sprites/queen_b.tres",
+	22:"res://sprites/king_b.tres"
 }
-func _init(value):
+func _init(value,slot=0):
 	self._value = value
+	self._slot = slot
 	load_resources()
 
 func set_value(value:int)->void:
@@ -215,6 +216,12 @@ func set_value(value:int)->void:
 	
 func get_value()->int:
 	return self._value
+	
+func set_slot(slot:int)->void:
+	self._slot = slot
+	
+func get_slot()->int:
+	return self._slot
 	
 func load_resources():
 	var resource = piece_resources[self._value]
@@ -226,7 +233,7 @@ func load_resources():
 # Drag & Drop setting up
 
 func get_drag_data(position):
-	#	create drag texture (for preview)
+#	create drag texture (for preview)
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
 	drag_texture.expand = true
@@ -236,7 +243,12 @@ func get_drag_data(position):
 	control.add_child(drag_texture)
 	drag_texture.rect_position = -0.25 *drag_texture.rect_size
 	set_drag_preview(control)
-	
+#	render preview 
+	var neighbor = self.get_neighbors_of(self._slot)
+	var board = get_node("/root/Main/CenterContainer/Board")
+	if board.has_method("preview_moves"):
+		board.preview_moves(neighbor)
+#	data
 	var data = {
 		"piece":self
 	}
@@ -249,5 +261,5 @@ func drop_data(position, data):
 	var board = get_node("/root/Main/CenterContainer/Board")
 	if board.has_method("log_message"):
 		board.log_message("eat!!!!")
-	if board.has_method(""):
-		pass
+	if board.has_method("clear_preview_moves"):
+		board.clear_preview_moves()

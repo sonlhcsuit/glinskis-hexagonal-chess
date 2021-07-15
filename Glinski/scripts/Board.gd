@@ -37,6 +37,7 @@ var file_offsets = [
 	[7,525,610],
 	[6,595,570],
 ]
+
 func get_neighbors_of(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
 		assert(false,"Board number are not valid, must in the range [1,70]")
@@ -199,21 +200,22 @@ func next_move_of(pos):
 	
 	var moves = next_move_of_piece(pos,state)
 	for move in moves:
-		var path_str = "Slots/Slot{i}".format({"i":move})
+		var path_str = "Slots/Slot_{i}".format({"i":move})
 		var slot:TextureButton = get_node(path_str)
 		if slot.has_method("trigger_image"):
 			slot.trigger_image()
 
 func preview_moves(moves):
 	for move in moves:
-		var path_str = "Slots/Slot{i}".format({"i":move})
-		var slot:TextureButton = get_node(path_str)
-		if slot.has_method("trigger_image"):
-			slot.trigger_image()
+		if move!=0:
+			var path_str = "Slots/Slot_{i}".format({"i":move})
+			var slot:TextureButton = get_node(path_str)
+			if slot.has_method("trigger_image"):
+				slot.trigger_image()
 	
 func clear_preview_moves()->void:
 	for i in range(0,70):
-		var path_str = "Slots/Slot{i}".format({"i":i+1})
+		var path_str = "Slots/Slot_{i}".format({"i":i+1})
 		var slot:TextureButton = get_node(path_str)
 		if slot.has_method("trigger"):
 			slot.trigger(false)
@@ -227,14 +229,14 @@ func render_state(state:Array)->void:
 	for i in range(len(state)):
 		if state[i]!=0:
 			var piece = create_piece(state[i])
-			var path_str = "Slots/Slot{i}".format({"i":i+1})
+			var path_str = "Slots/Slot_{i}".format({"i":i+1})
 			var slot:TextureButton = get_node(path_str)
 			slot.connect("pressed",self,"next_move_of",[i+1])
 			move_to_slot(piece,slot)
 			$Pieces.add_child(piece)
 	
 
-func move_to_slot(piece:TextureRect, slot:TextureButton):
+func move_to_slot(piece:Piece, slot:Slot):
 	var slot_position:Vector2 = slot.get_position()
 	var slot_size:Vector2 = slot.get_size()
 	var piece_size:Vector2 = piece.get_size() * piece.get_scale()
@@ -244,7 +246,8 @@ func move_to_slot(piece:TextureRect, slot:TextureButton):
 		slot_position.y - (piece_size.y - slot_size.y)/2
 		)
 	piece.set_position(newpos)
-	
+	piece.set_slot(slot.get_index())
+#	piece.set_slot()
 	
 func arrange_slots():
 	var index = 1
@@ -252,7 +255,7 @@ func arrange_slots():
 		var x_offset = file_offset[1]
 		var y_offset = file_offset[2]
 		for _i in range(file_offset[0]):
-			var path = "Slots/Slot{i}".format({"i":index})
+			var path = "Slots/Slot_{i}".format({"i":index})
 			var btn: TextureButton= get_node(path)
 			btn.set_position(Vector2(x_offset,y_offset))
 			index = index + 1

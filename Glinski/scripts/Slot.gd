@@ -1,4 +1,5 @@
 extends TextureButton
+class_name Slot
 
 var status:bool = false
 
@@ -14,6 +15,9 @@ func trigger(status:bool)->void:
 
 func trigger_image():
 	trigger(not status)
+
+func get_index()->int:
+	return int(name.split("_")[1])
 	
 func drop_data(position, data):
 	var board = get_node("/root/Main/CenterContainer/Board")
@@ -22,6 +26,8 @@ func drop_data(position, data):
 		board.move_to_slot(data["piece"],self)
 	if board.has_method("log_message"):
 		board.log_message("move"+ name)
+	if board.has_method("clear_preview_moves"):
+		board.clear_preview_moves()
 
 func can_drop_data(position, data):
 	return true
