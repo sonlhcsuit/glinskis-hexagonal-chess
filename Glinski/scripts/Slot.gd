@@ -38,6 +38,8 @@ func can_drop_data(position, data):
 	if index in moves:
 		return true
 	return false
+	
+	return true
 
 
 

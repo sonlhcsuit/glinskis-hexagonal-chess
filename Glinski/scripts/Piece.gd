@@ -1,6 +1,21 @@
 extends TextureRect
 class_name Piece
 
+var resources:Dictionary = {
+	9:"res://sprites/pawn.tres",
+	10:"res://sprites/knight.tres",
+	11:"res://sprites/bishop.tres",
+	12:"res://sprites/rook.tres",
+	13:"res://sprites/queen.tres",
+	14:"res://sprites/king.tres",
+	17:"res://sprites/pawn_b.tres",
+	18:"res://sprites/knight_b.tres",
+	19:"res://sprites/bishop_b.tres",
+	20:"res://sprites/rook_b.tres",
+	21:"res://sprites/queen_b.tres",
+	22:"res://sprites/king_b.tres"
+}
+
 var knight_set = [
 	[5,1],
 	[0,2],
@@ -22,21 +37,6 @@ var rook_set = [0,1,2,3,4,5]
 
 var _value:int = 0
 var _slot:int = 0
-var piece_resources:Dictionary = {
-	9:"res://sprites/pawn.tres",
-	10:"res://sprites/knight.tres",
-	11:"res://sprites/bishop.tres",
-	12:"res://sprites/rook.tres",
-	13:"res://sprites/queen.tres",
-	14:"res://sprites/king.tres",
-	17:"res://sprites/pawn_b.tres",
-	18:"res://sprites/knight_b.tres",
-	19:"res://sprites/bishop_b.tres",
-	20:"res://sprites/rook_b.tres",
-	21:"res://sprites/queen_b.tres",
-	22:"res://sprites/king_b.tres"
-}
-
 func _init(value,slot=0):
 	self._value = value
 	self._slot = slot
@@ -243,13 +243,13 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 	return moves
 
 func load_resources():
-	var resource = piece_resources[self._value]
+	var resource = resources[self._value]
 	var texture = load(resource)
 	self.set_texture(texture)
 	self.set_size(texture.get_size())
 	self.set_scale(Vector2(0.5,0.5))
 
-func get_board()->Node:
+func get_board():
 	return get_node("/root/Main/CenterContainer/Board")
 
 # Drag & Drop setting up
@@ -263,15 +263,15 @@ func get_drag_data(position):
 	drag_texture.set_scale(Vector2(0.5,0.5))
 	var control = Control.new()
 	control.add_child(drag_texture)
-	drag_texture.rect_position = -0.25 *drag_texture.rect_size
+	drag_texture.rect_position = -0.25 * drag_texture.rect_size
 	set_drag_preview(control)
 	
 #	render preview (blue circle) of available moves for selected piece
 	var board = get_board()
-	if board.has_method("preview_moves"):
-		var moves = self.next_move_of_piece(self._slot,board.get_state())
-		board.set_available_moves(moves)
-		board.preview_moves(moves)
+	var moves = self.next_move_of_piece(self._slot,board.get_state())
+	board.set_available_moves(moves)
+	board.clear_preview_moves()	
+	board.preview_moves()
 #	data
 	var data = {
 		"value":self._value,
@@ -282,16 +282,17 @@ func get_drag_data(position):
 # allow to eat
 func can_drop_data(position, data):
 	var board = get_board()
-	var moves = board.get_available_moves()
-	if _slot in moves:
+	var available_moves = board.get_available_moves()
+	if _slot in available_moves:
+		return true
+	if _slot == data['slot']:
 		return true
 	return false
+
 
 	
 func drop_data(position, data):
 	var board = get_board()
-	if board.has_method("log_message"):
-		board.log_message("eat!!!!")
 	if board.has_method("clear_preview_moves"):
 		board.clear_preview_moves()
 	if board.has_method("move"):

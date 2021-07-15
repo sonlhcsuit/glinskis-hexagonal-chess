@@ -27,6 +27,7 @@ func set_state(state:Array)->void:
 	self.state = state
 
 func set_available_moves(available_moves:Array)->void:
+	self.log_message(String(self.available_moves))
 	self.available_moves=available_moves
 	
 func get_available_moves()->Array:
@@ -36,13 +37,13 @@ func get_available_moves()->Array:
 func log_message(message:String)->void:
 	$Label.text = message
 
-func preview_moves(moves):
-	for move in moves:
-		if move!=0:
+func preview_moves():
+	for move in self.available_moves:
+		if move != 0:
 			var path_str = "Slots/Slot_{i}".format({"i":move})
 			var slot:TextureButton = get_node(path_str)
-			if slot.has_method("trigger_image"):
-				slot.trigger_image()
+			if slot.has_method("trigger"):
+				slot.trigger(true)
 	
 func clear_preview_moves()->void:
 	for i in range(0,70):
@@ -56,22 +57,28 @@ func create_piece(value:int)->TextureRect:
 	return Piece.new(value)
 	
 func render_state(state:Array)->void:
+	self.remove_child($Pieces)
+	var pieces_container = Node2D.new()
+	pieces_container.name = "Pieces"
 	for i in range(len(state)):
 		if state[i]!=0:
 			var piece = create_piece(state[i])
 			var path_str = "Slots/Slot_{i}".format({"i":i+1})
 			var slot:TextureButton = get_node(path_str)
 			stick_piece_with_slot(piece,slot)
-			$Pieces.add_child(piece)
+			pieces_container.add_child(piece)
+	self.add_child(pieces_container)
 	
 # make sure the move is LEGAL
 func move(from, to)->void:
 	if from < 0 or from > 70:
 		assert(false, "Move are illegal")
 	if from < 0 or from > 70:
-		assert(false, "Move are illegal")		
-	self.state[to] = self.state[to]
-	self.state[from]=0
+		assert(false, "Move are illegal")
+	if from == to :
+		return
+	self.state[to-1] = self.state[from-1]
+	self.state[from-1]=0
 	self.render_state(state)
 
 func stick_piece_with_slot(piece:Piece, slot:Slot):
@@ -84,8 +91,8 @@ func stick_piece_with_slot(piece:Piece, slot:Slot):
 		slot_position.y - (piece_size.y - slot_size.y)/2
 		)
 	piece.set_position(newpos)
-	piece.set_slot(slot.get_index())
-#	piece.set_slot()
+	piece.set_slot(slot.get_slot())
+
 	
 func arrange_slots():
 	var index = 1
