@@ -204,7 +204,21 @@ func next_move_of(pos):
 		if slot.has_method("trigger_image"):
 			slot.trigger_image()
 
+func preview_moves(moves):
+	for move in moves:
+		var path_str = "Slots/Slot{i}".format({"i":move})
+		var slot:TextureButton = get_node(path_str)
+		if slot.has_method("trigger_image"):
+			slot.trigger_image()
+	
+func clear_preview_moves()->void:
+	for i in range(0,70):
+		var path_str = "Slots/Slot{i}".format({"i":i+1})
+		var slot:TextureButton = get_node(path_str)
+		if slot.has_method("trigger"):
+			slot.trigger(false)
 
+	
 func create_piece(value:int)->TextureRect:
 	return Piece.new(value)
 	

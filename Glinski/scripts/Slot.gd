@@ -14,19 +14,14 @@ func trigger(status:bool)->void:
 
 func trigger_image():
 	trigger(not status)
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func node_name():
-	return str(name.replace("@", "").replace(str(int(name)), ""))
 	
 func drop_data(position, data):
 	var board = get_node("/root/Main/CenterContainer/Board")
 
 	if board.has_method("move_to_slot"):
 		board.move_to_slot(data["piece"],self)
+	if board.has_method("log_message"):
+		board.log_message("move"+ name)
 
 func can_drop_data(position, data):
 	return true
