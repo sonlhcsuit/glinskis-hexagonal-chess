@@ -253,7 +253,6 @@ func get_board():
 	return get_node("/root/Main/CenterContainer/Board")
 
 # Drag & Drop setting up
-
 func get_drag_data(position):
 #	create drag texture (for preview)
 	var drag_texture = TextureRect.new()
@@ -285,12 +284,8 @@ func can_drop_data(position, data):
 	var available_moves = board.get_available_moves()
 	if _slot in available_moves:
 		return true
-	if _slot == data['slot']:
-		return true
 	return false
 
-
-	
 func drop_data(position, data):
 	var board = get_board()
 	if board.has_method("clear_preview_moves"):

@@ -27,7 +27,6 @@ func set_state(state:Array)->void:
 	self.state = state
 
 func set_available_moves(available_moves:Array)->void:
-	self.log_message(String(self.available_moves))
 	self.available_moves=available_moves
 	
 func get_available_moves()->Array:
@@ -112,7 +111,6 @@ func _ready():
 	self.arrange_slots()
 	state[54-1] = 14
 	self.render_state(self.state)
-
 #	var t = []
 #	for i in range(0,70):
 #		t.append(0)
@@ -120,4 +118,7 @@ func _ready():
 #	state = t
 #	render_state(t)
 	pass # Replace with function body.
-
+	
+func _input(event):
+	if event is InputEventMouseButton and not event.is_pressed():
+	   self.clear_preview_moves()
