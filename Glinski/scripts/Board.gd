@@ -1,13 +1,11 @@
 extends TextureRect
-
-
 var default_state:Array = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var PIECES = 'pnbrqk//PNBRQK//'
 
 var Piece = load("res://scripts/Piece.gd")
 
 var state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
-
+var available_moves = []
 
 ## columns offets
 var file_offsets = [
@@ -27,6 +25,13 @@ func get_state()->Array:
 
 func set_state(state:Array)->void:
 	self.state = state
+
+func set_available_moves(available_moves:Array)->void:
+	self.available_moves=available_moves
+	
+func get_available_moves()->Array:
+	return available_moves
+
 
 func log_message(message:String)->void:
 	$Label.text = message
@@ -56,11 +61,20 @@ func render_state(state:Array)->void:
 			var piece = create_piece(state[i])
 			var path_str = "Slots/Slot_{i}".format({"i":i+1})
 			var slot:TextureButton = get_node(path_str)
-			move_to_slot(piece,slot)
+			stick_piece_with_slot(piece,slot)
 			$Pieces.add_child(piece)
 	
+# make sure the move is LEGAL
+func move(from, to)->void:
+	if from < 0 or from > 70:
+		assert(false, "Move are illegal")
+	if from < 0 or from > 70:
+		assert(false, "Move are illegal")		
+	self.state[to] = self.state[to]
+	self.state[from]=0
+	self.render_state(state)
 
-func move_to_slot(piece:Piece, slot:Slot):
+func stick_piece_with_slot(piece:Piece, slot:Slot):
 	var slot_position:Vector2 = slot.get_position()
 	var slot_size:Vector2 = slot.get_size()
 	var piece_size:Vector2 = piece.get_size() * piece.get_scale()
@@ -88,9 +102,9 @@ func arrange_slots():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	arrange_slots()
+	self.arrange_slots()
 	state[54-1] = 14
-	render_state(state)
+	self.render_state(self.state)
 
 #	var t = []
 #	for i in range(0,70):

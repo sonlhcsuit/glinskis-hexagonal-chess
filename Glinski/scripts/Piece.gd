@@ -1,7 +1,6 @@
 extends TextureRect
 class_name Piece
 
-
 var knight_set = [
 	[5,1],
 	[0,2],
@@ -21,7 +20,42 @@ var bishop_set = [
 
 var rook_set = [0,1,2,3,4,5]
 
+var _value:int = 0
+var _slot:int = 0
+var piece_resources:Dictionary = {
+	9:"res://sprites/pawn.tres",
+	10:"res://sprites/knight.tres",
+	11:"res://sprites/bishop.tres",
+	12:"res://sprites/rook.tres",
+	13:"res://sprites/queen.tres",
+	14:"res://sprites/king.tres",
+	17:"res://sprites/pawn_b.tres",
+	18:"res://sprites/knight_b.tres",
+	19:"res://sprites/bishop_b.tres",
+	20:"res://sprites/rook_b.tres",
+	21:"res://sprites/queen_b.tres",
+	22:"res://sprites/king_b.tres"
+}
 
+func _init(value,slot=0):
+	self._value = value
+	self._slot = slot
+	load_resources()
+
+func set_value(value:int)->void:
+	self._value = value
+	load_resources()
+	
+func get_value()->int:
+	return self._value
+	
+func set_slot(slot:int)->void:
+	self._slot = slot
+	
+func get_slot()->int:
+	return self._slot
+	
+# moving pieces ultilities
 func get_neighbors_of(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
 		assert(false,"Board number are not valid, must in the range [1,70]")
@@ -174,6 +208,7 @@ func king_move(slot_value:int,state:Array,white:bool)-> Array:
 		if legal_slot(neighbor,state,white):
 			moves.append(neighbor)
 	return moves
+
 func next_move_of_piece(slot_value:int,state:Array) -> Array:
 	if len(state) != 70 or slot_value > 70 :
 		assert(false,"State of the game is not valid")
@@ -187,7 +222,6 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		white = false
 	else:
 		piece_value = piece_value - 8
-
 	if piece_value == 1:
 #		pawn
 		moves = self.pawn_move(slot_value,state,white)
@@ -208,49 +242,16 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		moves = self.king_move(slot_value,state,white)
 	return moves
 
-
-
-var _value:int = 0
-var _slot:int = 0
-var piece_resources:Dictionary = {
-	9:"res://sprites/pawn.tres",
-	10:"res://sprites/knight.tres",
-	11:"res://sprites/bishop.tres",
-	12:"res://sprites/rook.tres",
-	13:"res://sprites/queen.tres",
-	14:"res://sprites/king.tres",
-	17:"res://sprites/pawn_b.tres",
-	18:"res://sprites/knight_b.tres",
-	19:"res://sprites/bishop_b.tres",
-	20:"res://sprites/rook_b.tres",
-	21:"res://sprites/queen_b.tres",
-	22:"res://sprites/king_b.tres"
-}
-func _init(value,slot=0):
-	self._value = value
-	self._slot = slot
-	load_resources()
-
-func set_value(value:int)->void:
-	self._value = value
-	load_resources()
-	
-func get_value()->int:
-	return self._value
-	
-func set_slot(slot:int)->void:
-	self._slot = slot
-	
-func get_slot()->int:
-	return self._slot
-	
 func load_resources():
 	var resource = piece_resources[self._value]
 	var texture = load(resource)
 	self.set_texture(texture)
 	self.set_size(texture.get_size())
 	self.set_scale(Vector2(0.5,0.5))
-	
+
+func get_board()->Node:
+	return get_node("/root/Main/CenterContainer/Board")
+
 # Drag & Drop setting up
 
 func get_drag_data(position):
@@ -264,24 +265,34 @@ func get_drag_data(position):
 	control.add_child(drag_texture)
 	drag_texture.rect_position = -0.25 *drag_texture.rect_size
 	set_drag_preview(control)
+	
 #	render preview (blue circle) of available moves for selected piece
-
-	var board = get_node("/root/Main/CenterContainer/Board")
+	var board = get_board()
 	if board.has_method("preview_moves"):
 		var moves = self.next_move_of_piece(self._slot,board.get_state())
+		board.set_available_moves(moves)
 		board.preview_moves(moves)
 #	data
 	var data = {
-		"piece":self
+		"value":self._value,
+		"slot":self._slot
 	}
 	return data
 
+# allow to eat
 func can_drop_data(position, data):
-	return true
+	var board = get_board()
+	var moves = board.get_available_moves()
+	if _slot in moves:
+		return true
+	return false
+
 	
 func drop_data(position, data):
-	var board = get_node("/root/Main/CenterContainer/Board")
+	var board = get_board()
 	if board.has_method("log_message"):
 		board.log_message("eat!!!!")
 	if board.has_method("clear_preview_moves"):
 		board.clear_preview_moves()
+	if board.has_method("move"):
+		board.move(data["slot"],self._slot)
