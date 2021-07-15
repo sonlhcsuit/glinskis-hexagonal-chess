@@ -22,6 +22,12 @@ var file_offsets = [
 	[6,595,570],
 ]
 
+func get_state()->Array:
+	return self.state
+
+func set_state(state:Array)->void:
+	self.state = state
+
 func log_message(message:String)->void:
 	$Label.text = message
 
@@ -83,7 +89,14 @@ func arrange_slots():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arrange_slots()
-	state[54-1] = 11
+	state[54-1] = 14
 	render_state(state)
+
+#	var t = []
+#	for i in range(0,70):
+#		t.append(0)
+#	t[54-1]=12
+#	state = t
+#	render_state(t)
 	pass # Replace with function body.
 
