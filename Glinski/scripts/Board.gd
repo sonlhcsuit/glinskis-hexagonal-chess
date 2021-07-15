@@ -4,7 +4,9 @@ extends TextureRect
 var default_state:Array = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var PIECES = 'pnbrqk//PNBRQK//'
 
-var state = [0, 0, 0, 0, 0, 0, 12, 9, 17, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
+var Piece = load("res://scripts/Piece.gd")
+
+var state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 
 var knight_set = [
 	[5,1],
@@ -13,6 +15,14 @@ var knight_set = [
 	[2,4],
 	[3,5],
 	[4,0],
+]
+var bishop_set = [
+	[0,1],
+	[0,5],
+	[2,1],
+	[2,3],
+	[4,3],
+	[4,5]
 ]
 
 ## columns offets
@@ -27,22 +37,7 @@ var file_offsets = [
 	[7,525,610],
 	[6,595,570],
 ]
-var piece_resources:Dictionary = {
-	9:"res://sprites/pawn.tres",
-	10:"res://sprites/knight.tres",
-	11:"res://sprites/bishop.tres",
-	12:"res://sprites/rook.tres",
-	13:"res://sprites/queen.tres",
-	14:"res://sprites/king.tres",
-	17:"res://sprites/pawn_b.tres",
-	18:"res://sprites/knight_b.tres",
-	19:"res://sprites/bishop_b.tres",
-	20:"res://sprites/rook_b.tres",
-	21:"res://sprites/queen_b.tres",
-	22:"res://sprites/king_b.tres"
-}
-
-func neighbor(board_number: int) -> Array:
+func get_neighbors_of(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
 		assert(false,"Board number are not valid, must in the range [1,70]")
 	var result = [board_number,board_number,board_number,board_number,board_number,board_number ]
@@ -112,12 +107,12 @@ func legal_slot(slot:int,white:bool)->bool:
 
 func knight_move(slot_value:int,state:Array,white:bool)-> Array:
 	var moves = []
-	var neighbors = neighbor(slot_value)
+	var neighbors = get_neighbors_of(slot_value)
 	for i in range(6):
 		if neighbors[i] != 0:
-			var n = neighbor(neighbors[i])[i]
+			var n = get_neighbors_of(neighbors[i])[i]
 			if n != 0:
-				var offset = neighbor(n)
+				var offset = get_neighbors_of(n)
 				var move_1 = offset[knight_set[i][0]]
 				var move_2 = offset[knight_set[i][1]]
 				if legal_slot(move_1,white):
@@ -128,18 +123,24 @@ func knight_move(slot_value:int,state:Array,white:bool)-> Array:
 
 func bishop_move(slot_value:int,state:Array,white:bool)-> Array:
 	var moves = []
-	var neighbors = neighbor(slot_value)
-	for i in range(6):
-		if neighbors[i] != 0:
-			var n = neighbor(neighbors[i])[i]
-			if n != 0:
-				var offset = neighbor(n)
-				var move_1 = offset[knight_set[i][0]]
-				var move_2 = offset[knight_set[i][1]]
-				if legal_slot(move_1,white):
-					moves.append(move_1)
-				if legal_slot(move_2,white):
-					moves.append(move_2)
+	for direction in bishop_set:
+		var slot = slot_value
+		while true:
+			var neighbors = get_neighbors_of(slot) 
+			if neighbors[direction[0]] != 0 :
+				var move = get_neighbors_of(neighbors[direction[0]])[direction[1]]
+				if legal_slot(move,white):
+					moves.append(move)
+					slot = move
+					if state[move - 1] !=0:
+						break
+#					if state[move] != 0:
+#						break
+					
+				else:
+					break
+			else:
+				break
 	return moves
 
 func next_move_of_piece(slot_value:int,state:Array) -> Array:
@@ -158,7 +159,7 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		
 	if piece_value == 1:
 #		pawn next moves
-		var neighbors = neighbor(slot_value)
+		var neighbors = get_neighbors_of(slot_value)
 		log_message(String(neighbors))
 		if white:
 			var top = neighbors[0]
@@ -205,13 +206,7 @@ func next_move_of(pos):
 
 
 func create_piece(value:int)->TextureRect:
-	var resource = piece_resources[value]
-	var texture = load(resource)
-	var piece:TextureRect = TextureRect.new()
-	piece.set_texture(texture)
-	piece.set_size(texture.get_size())
-	piece.set_scale(Vector2(0.5,0.5))
-	return piece
+	return Piece.new(value)
 	
 func render_state(state:Array)->void:
 	
@@ -252,7 +247,7 @@ func arrange_slots():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arrange_slots()
-	state[26] = 11
+	state[54-1] = 11
 	render_state(state)
 	pass # Replace with function body.
 

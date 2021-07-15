@@ -8,11 +8,10 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=2]
 flags = 4
-load_path = "res://.import/5eba9a49ae6b7.png-2df1949228162b0fa0eac5720c8d368c.stex"
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 script/source = "extends PopupDialog
 
 
@@ -63,8 +62,6 @@ margin_top = 92.0
 margin_right = 836.0
 margin_bottom = 908.0
 script = ExtResource( 18 )
-
-[node name="Pieces" type="Node2D" parent="CenterContainer/Board"]
 
 [node name="Slots" type="Node2D" parent="CenterContainer/Board"]
 
@@ -276,6 +273,8 @@ margin_right = 44.716
 
 [node name="Slot70" parent="CenterContainer/Board/Slots" instance=ExtResource( 2 )]
 
+[node name="Pieces" type="Node2D" parent="CenterContainer/Board"]
+
 [node name="Label" type="Label" parent="CenterContainer/Board"]
 margin_left = -0.805969
 margin_top = 135.404
@@ -346,7 +345,7 @@ margin_top = 17.3727
 margin_right = 6268.32
 margin_bottom = 2457.37
 rect_scale = Vector2( 0.01, 0.01 )
-texture_normal = SubResource( 3 )
+texture_normal = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -369,7 +368,7 @@ __meta__ = {
 }
 
 [node name="PopupDialog" type="PopupDialog" parent="."]
-script = SubResource( 2 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
