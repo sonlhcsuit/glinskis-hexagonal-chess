@@ -31,6 +31,7 @@ var file_offsets = [
 	[7,525,610],
 	[6,595,570],
 ]
+
 func get_neighbors_of(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
 		assert(false,"Board number are not valid, must in the range [1,70]")
@@ -152,7 +153,7 @@ func get_neighbors_of(board_number: int) -> Array:
 #	if piece_value == 1:
 ##		pawn next moves
 #		var neighbors = get_neighbors_of(slot_value)
-#		log_message(String(neighbors))
+##		log_message(String(neighbors))
 #		if white:
 #			var top = neighbors[0]
 #			var top_left = neighbors[1]
