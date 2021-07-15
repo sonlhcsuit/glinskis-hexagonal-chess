@@ -37,7 +37,12 @@ func load_resources():
 # Drag & Drop setting up
 
 func get_drag_data(position):
-	var data = "??"
+	var data = {
+		"value":self._value,
+		"texture": load(piece_resources[self._value]),
+		"piece":self
+		
+	}
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
 	drag_texture.expand = true

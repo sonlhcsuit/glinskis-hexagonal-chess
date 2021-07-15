@@ -19,9 +19,17 @@ func trigger_image():
 func _ready():
 	pass # Replace with function body.
 
+func node_name():
+	return str(name.replace("@", "").replace(str(int(name)), ""))
+	
+func drop_data(position, data):
+	var board = get_node("/root/Main/CenterContainer/Board")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if board.has_method("move_to_slot"):
+		board.move_to_slot(data["piece"],self)
+
+func can_drop_data(position, data):
+	return true
+
 
 

@@ -219,6 +219,7 @@ func render_state(state:Array)->void:
 			move_to_slot(piece,slot)
 			$Pieces.add_child(piece)
 	
+
 func move_to_slot(piece:TextureRect, slot:TextureButton):
 	var slot_position:Vector2 = slot.get_position()
 	var slot_size:Vector2 = slot.get_size()
