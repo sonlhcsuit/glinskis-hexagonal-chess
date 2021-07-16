@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/KNIGHT.png-3e410e72be0285bb92c7b8c1d61a3ec8.stex"
+path="res://.import/blue-circle.png-994d6597d5906b3787086af65e723463.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guidePhotos/KNIGHT.png"
-dest_files=[ "res://.import/KNIGHT.png-3e410e72be0285bb92c7b8c1d61a3ec8.stex" ]
+source_file="res://assets/blue-circle.png"
+dest_files=[ "res://.import/blue-circle.png-994d6597d5906b3787086af65e723463.stex" ]
 
 [params]
 

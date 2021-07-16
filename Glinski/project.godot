@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Glinski"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Intro.tscn"
 run/disable_stdout=true
 run/disable_stderr=true
 config/icon="res://assets/icon.png"

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ROOK.png-67260787e97174dee1f5433267862680.stex"
+path="res://.import/QUEEN.png-2dd0424c28c1483ae007ee6316959068.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guidePhotos/ROOK.png"
-dest_files=[ "res://.import/ROOK.png-67260787e97174dee1f5433267862680.stex" ]
+source_file="res://assets/guide-photos/QUEEN.png"
+dest_files=[ "res://.import/QUEEN.png-2dd0424c28c1483ae007ee6316959068.stex" ]
 
 [params]
 

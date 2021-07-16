@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PAWN.png-b6b57aa5ca48e0406bc3e77ea559cd4e.stex"
+path="res://.import/KNIGHT.png-022694b95dd78e711cef8e50c11b1d76.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guidePhotos/PAWN.png"
-dest_files=[ "res://.import/PAWN.png-b6b57aa5ca48e0406bc3e77ea559cd4e.stex" ]
+source_file="res://assets/guide-photos/KNIGHT.png"
+dest_files=[ "res://.import/KNIGHT.png-022694b95dd78e711cef8e50c11b1d76.stex" ]
 
 [params]
 

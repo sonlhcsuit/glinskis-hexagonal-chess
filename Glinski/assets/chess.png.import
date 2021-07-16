@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BISHOP.png-36d02a645f4136ad37ef12f2c17bb38f.stex"
+path="res://.import/chess.png-1b2dd28acf7d793a799af77fd8034eca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://guidePhotos/BISHOP.png"
-dest_files=[ "res://.import/BISHOP.png-36d02a645f4136ad37ef12f2c17bb38f.stex" ]
+source_file="res://assets/chess.png"
+dest_files=[ "res://.import/chess.png-1b2dd28acf7d793a799af77fd8034eca.stex" ]
 
 [params]
 

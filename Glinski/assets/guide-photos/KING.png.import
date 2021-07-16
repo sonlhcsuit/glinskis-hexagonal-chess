@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blue-circle copy.png-92aa9408a6fe043e0edd144b882f544b.stex"
+path="res://.import/KING.png-ceb4733ab4a215041bcc28207fa30422.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/blue-circle copy.png"
-dest_files=[ "res://.import/blue-circle copy.png-92aa9408a6fe043e0edd144b882f544b.stex" ]
+source_file="res://assets/guide-photos/KING.png"
+dest_files=[ "res://.import/KING.png-ceb4733ab4a215041bcc28207fa30422.stex" ]
 
 [params]
 
