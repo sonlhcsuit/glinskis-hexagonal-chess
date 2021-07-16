@@ -4,7 +4,7 @@ signal open_setting
 signal start_game
 signal open_guide
 signal save_setting
-signal back_intro
+signal back_to_intro
 
 func _on_Quit_pressed():
 	get_tree().quit()

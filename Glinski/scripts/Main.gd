@@ -7,6 +7,10 @@ var setting:Dictionary ={}
 var is_autoplay:bool = true
 var level:int = 1
 
+signal open_setting
+signal start_game
+signal open_guide
+signal save_setting
 signal back_to_intro
 
 func get_board():

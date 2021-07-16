@@ -1,6 +1,9 @@
 extends Node2D
-signal back_to_intro
+signal open_setting
+signal start_game
+signal open_guide
 signal save_setting(setting)
+signal back_to_intro
 
 var setting:Dictionary
 onready var diff = $CenterContainer/VBoxContainer/VBoxContainer/Difficulty	

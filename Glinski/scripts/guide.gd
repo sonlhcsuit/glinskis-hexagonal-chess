@@ -1,4 +1,8 @@
 extends Node2D
+signal open_setting
+signal start_game
+signal open_guide
+signal save_setting
 signal back_to_intro
 func load_photo(path:String):
 	var texture:AtlasTexture = load(path)
