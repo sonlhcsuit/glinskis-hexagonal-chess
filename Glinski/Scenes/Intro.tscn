@@ -156,6 +156,7 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Setting" to="." method="_on_Setting_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/About" to="." method="_on_About_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Guide" to="." method="_on_Guide_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

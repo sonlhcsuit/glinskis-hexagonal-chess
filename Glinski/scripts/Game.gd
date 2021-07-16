@@ -14,6 +14,7 @@ func connect_signal():
 	scene.connect("start_game",self,"start_game_handler")
 	scene.connect("back_to_intro",self,"back_to_intro_handler")
 	scene.connect("open_guide",self,"open_guide_handler")
+	scene.connect("open_setting",self,"open_setting_handler")
 
 func start_game_handler():
 	var next_scene = load("res://Scenes/Main.tscn").instance()
@@ -31,6 +32,13 @@ func back_to_intro_handler():
 	
 func open_guide_handler():
 	var next_scene = load("res://Scenes/Guide.tscn").instance()
+	add_child(next_scene)
+	scene.queue_free()
+	scene = next_scene
+	connect_signal()
+
+func open_setting_handler():
+	var next_scene = load("res://Scenes/Setting.tscn").instance()
 	add_child(next_scene)
 	scene.queue_free()
 	scene = next_scene

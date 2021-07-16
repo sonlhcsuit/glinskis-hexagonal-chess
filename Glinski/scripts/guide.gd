@@ -1,5 +1,5 @@
 extends Node2D
-
+signal back_to_intro
 func load_photo(path:String):
 	var texture:AtlasTexture = load(path)
 	$CenterContainer/GuidePhoto.texture = texture
@@ -11,8 +11,7 @@ func _on_BackButton_pressed():
 		hide_photo()
 		$CenterContainer/ChessPieces.show()
 	else:
-		get_tree().change_scene("res://Scenes/Intro.tscn")
-
+		emit_signal("back_to_intro")
 
 func _on_KING_pressed():
 	load_photo("res://sprites/guide-sprites/king-guide.tres")

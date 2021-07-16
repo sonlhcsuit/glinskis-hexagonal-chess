@@ -40,5 +40,5 @@ func _on_Button_pressed():
 	pass # Replace with function body.
 
 
-func _on_TextureButton_pressed():
+func _on_BackButton_pressed():
 	emit_signal("back_to_intro")

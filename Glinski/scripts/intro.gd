@@ -18,5 +18,10 @@ func _on_About_pressed():
 	pass # Replace with function body.
 
 
+
 func _on_Guide_pressed():
 	emit_signal("open_guide")
+
+
+func _on_Setting_pressed():
+	emit_signal("open_setting")
