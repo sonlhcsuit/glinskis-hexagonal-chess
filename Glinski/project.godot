@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "TextureRect",
+"class": "Board",
+"language": "GDScript",
+"path": "res://scripts/Board.gd"
+}, {
+"base": "TextureRect",
 "class": "Piece",
 "language": "GDScript",
 "path": "res://scripts/Piece.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/Slot.gd"
 } ]
 _global_script_class_icons={
+"Board": "",
 "Piece": "",
 "Slot": ""
 }

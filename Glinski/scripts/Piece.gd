@@ -254,6 +254,16 @@ func get_board():
 
 # Drag & Drop setting up
 func get_drag_data(position):
+	var board = get_board()
+	if not(
+		(board.is_white_turn() and self._value < 16) or 
+		(not board.is_white_turn() and self._value > 16)
+		):
+		return null
+	
+	
+	
+	
 #	create drag texture (for preview)
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture
@@ -266,7 +276,6 @@ func get_drag_data(position):
 	set_drag_preview(control)
 	
 #	render preview (blue circle) of available moves for selected piece
-	var board = get_board()
 	var moves = self.next_move_of_piece(self._slot,board.get_state())
 	board.set_available_moves(moves)
 	board.clear_preview_moves()	
@@ -278,7 +287,7 @@ func get_drag_data(position):
 	}
 	return data
 
-# allow to eat
+# allow to eat enemy piece
 func can_drop_data(position, data):
 	var board = get_board()
 	var available_moves = board.get_available_moves()
