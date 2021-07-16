@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Setting.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Intro.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Guide.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=4]
+
+[node name="Game" type="Node"]
+
+[node name="Intro" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="Guide" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Main" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="Setting" parent="." instance=ExtResource( 1 )]
+visible = false

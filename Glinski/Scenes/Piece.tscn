@@ -2,7 +2,7 @@
 
 [ext_resource path="res://sprites/rook_b.tres" type="Texture" id=1]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="Piece" type="TextureRect"]
 anchor_left = -0.00072438
 anchor_right = -0.00072438
 margin_right = 135.0
