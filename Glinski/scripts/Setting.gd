@@ -1,6 +1,6 @@
 extends Node2D
 signal back_to_intro
-
+signal save_setting(setting)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var diff = $CenterContainer/VBoxContainer/VBoxContainer/Difficulty	
@@ -25,7 +25,7 @@ func _on_Mode_item_selected(index):
 		diff.disabled=false
 
 
-func _on_Button_pressed():
+func _on_Save_pressed():
 	var diff = $CenterContainer/VBoxContainer/VBoxContainer/Difficulty	
 	var mode = $CenterContainer/VBoxContainer/VBoxContainer/Mode
 	var server = $CenterContainer/VBoxContainer/VBoxContainer/server
@@ -36,9 +36,11 @@ func _on_Button_pressed():
 	}
 	if mode.selected == 0:
 		data["difficulty"] = null
-	$Label.text = String(data)
-	pass # Replace with function body.
+		
+	emit_signal("save_setting",data)
 
 
 func _on_BackButton_pressed():
 	emit_signal("back_to_intro")
+
+

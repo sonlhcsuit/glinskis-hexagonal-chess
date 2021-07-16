@@ -251,20 +251,15 @@ func load_resources():
 	self.set_scale(Vector2(0.5,0.5))
 
 func get_board():
-	return get_node("/root/Main/CenterContainer/Board")
+	return get_node("/root/Game/Main/CenterContainer/Board")
 
 # Drag & Drop setting up
 func get_drag_data(position):
 	var board = get_board()
-	if not(
-		(board.is_white_turn() and self._value < 16) or 
-		(not board.is_white_turn() and self._value > 16)
-		):
+	if not ((board.is_white_turn() and self._value < 16) or 
+		(not board.is_white_turn() and self._value > 16)):
 		return null
-	
-	
-	
-	
+
 #	create drag texture (for preview)
 	var drag_texture = TextureRect.new()
 	drag_texture.texture = texture

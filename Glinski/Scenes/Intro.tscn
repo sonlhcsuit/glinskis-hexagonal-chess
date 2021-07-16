@@ -19,6 +19,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+visible = false
 margin_right = 1000.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1000, 1000 )

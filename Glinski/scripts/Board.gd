@@ -38,7 +38,7 @@ func get_available_moves()->Array:
 	return available_moves
 
 func dialog(title:String,content:String)->void:
-	var notification = get_node("/root/Main/CenterContainer/notification")
+	var notification = get_node("/root/Game/Main/CenterContainer/notification")
 	notification.get_node("title").text = title
 	notification.get_node("content").text = content
 	notification.popup()

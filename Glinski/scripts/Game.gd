@@ -7,6 +7,7 @@ signal back_to_intro
 
 onready var scene = $Intro
 
+var setting = {"click":0}
 func _ready():
 	connect_signal()
 
@@ -15,6 +16,8 @@ func connect_signal():
 	scene.connect("back_to_intro",self,"back_to_intro_handler")
 	scene.connect("open_guide",self,"open_guide_handler")
 	scene.connect("open_setting",self,"open_setting_handler")
+	scene.connect("save_setting",self,"save_setting_handler")
+	
 
 func start_game_handler():
 	var next_scene = load("res://Scenes/Main.tscn").instance()
@@ -22,6 +25,7 @@ func start_game_handler():
 	scene.queue_free()
 	scene = next_scene
 	connect_signal()
+	next_scene.set_setting(self.setting)	
 
 func back_to_intro_handler():
 	var next_scene = load("res://Scenes/Intro.tscn").instance()
@@ -43,3 +47,7 @@ func open_setting_handler():
 	scene.queue_free()
 	scene = next_scene
 	connect_signal()
+
+func save_setting_handler(setting):
+	self.setting = setting
+	$Label.text = String(setting)

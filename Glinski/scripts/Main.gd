@@ -3,14 +3,22 @@ extends Node2D
 #				Setting up board pieces                #
 #########################################################
 
+var setting:Dictionary ={}
 var is_autoplay:bool = true
 var level:int = 1
 
 signal back_to_intro
 
 func get_board():
-	return get_node("/root/Main/CenterContainer/Board")
-	
+	return get_node("/root/Game/Main/CenterContainer/Board")
+
+func set_setting(setting):
+	self.setting = setting
+	$Label.text = String(setting)
+
+func get_setting(setting):
+	return self.setting
+
 func random_move()->Array:
 	var board = get_board()
 	var state = board.get_state()
@@ -26,6 +34,9 @@ func random_move()->Array:
 	var rng = RandomNumberGenerator.new()
 	return moves[rng.randi_range(0,l-1)]
 	
+func _ready():
+	pass
+#	$Label.text = String(self.setting)
 func _process(delta):
 	pass
 #	var board = get_board()

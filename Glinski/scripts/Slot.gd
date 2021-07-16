@@ -20,7 +20,7 @@ func get_slot()->int:
 	return int(name.split("_")[1])
 
 func get_board():
-	return get_node("/root/Main/CenterContainer/Board")
+	return get_node("/root/Game/Main/CenterContainer/Board")
 
 
 # moves are legal, update state allow piece move from slot A to slot B 
