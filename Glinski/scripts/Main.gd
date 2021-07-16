@@ -14,7 +14,6 @@ func get_board():
 
 func set_setting(setting):
 	self.setting = setting
-	$Label.text = String(setting)
 
 func get_setting(setting):
 	return self.setting
@@ -33,12 +32,50 @@ func random_move()->Array:
 	var l = len(moves)
 	var rng = RandomNumberGenerator.new()
 	return moves[rng.randi_range(0,l-1)]
-	
-func _ready():
-	pass
-#	$Label.text = String(self.setting)
+
+
+func _on_BackButton_pressed():
+	emit_signal("back_to_intro")
+
 func _process(delta):
+	$Label.text =String(self.setting)
+	var board = self.get_board()
+	if not board.is_white_turn() :
+		var move = random_move()
+		board.move(move[0],move[1])
 	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #	var board = get_board()
 #	if is_autoplay and not board.is_white_turn():
 #		var move = random_move()
@@ -350,7 +387,3 @@ func _process(delta):
 #
 ## Called when the node enters the scene tree for the first time.
 
-
-func _on_BackButton_pressed():
-	$CenterContainer/Board.log_message("Clicked")
-	emit_signal("back_to_intro")

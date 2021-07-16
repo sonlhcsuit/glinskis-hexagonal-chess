@@ -7,7 +7,7 @@ func trigger(status:bool)->void:
 	if self.status == status:
 		return
 	if status:
-		var texture = load("res://sprites/circle.tres")
+		var texture = load("res://sprites/blue-circle.tres")
 		set_normal_texture(texture)
 	else:
 		set_normal_texture(null)

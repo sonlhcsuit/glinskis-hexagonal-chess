@@ -7,7 +7,10 @@ signal back_to_intro
 
 onready var scene = $Intro
 
-var setting = {"click":0}
+var setting = {
+	"difficulty":1,
+	"url":"http:127.0.0.1:5000/"
+}
 func _ready():
 	connect_signal()
 
@@ -47,7 +50,7 @@ func open_setting_handler():
 	scene.queue_free()
 	scene = next_scene
 	connect_signal()
+	next_scene.set_setting(self.setting)
 
 func save_setting_handler(setting):
 	self.setting = setting
-	$Label.text = String(setting)

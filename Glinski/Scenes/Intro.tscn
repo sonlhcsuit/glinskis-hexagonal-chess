@@ -19,7 +19,6 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CenterContainer"]
-visible = false
 margin_right = 1000.0
 margin_bottom = 1000.0
 rect_min_size = Vector2( 1000, 1000 )
@@ -29,6 +28,7 @@ __meta__ = {
 }
 
 [node name="Dialog" type="PopupDialog" parent="CenterContainer"]
+visible = true
 margin_left = 350.0
 margin_top = 375.0
 margin_right = 650.0
