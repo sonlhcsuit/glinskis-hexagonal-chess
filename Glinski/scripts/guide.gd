@@ -8,7 +8,7 @@ func load_photo(path:String):
 	$CenterContainer/ChessPieces.hide()
 
 func _on_BackButton_pressed():
-	if( $CenterContainer/GuidePhoto.is_visible_in_tree()):
+	if $CenterContainer/GuidePhoto.texture!=null:
 		hide_photo()
 		$CenterContainer/ChessPieces.show()
 	else:
@@ -38,6 +38,6 @@ func _on_DETAIL_pressed():
 	$CenterContainer/PopupDialog.popup()
 
 func hide_photo():
-	$CenterContainer/GuidePhoto.hide()
+	$CenterContainer/GuidePhoto.texture = null
 	$ColorRect.show()
 

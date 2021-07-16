@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="Setting" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1000.0
+margin_bottom = 1000.0
+color = Color( 0.501961, 0.847059, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1000, 1000 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

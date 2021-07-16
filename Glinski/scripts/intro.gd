@@ -27,7 +27,7 @@ func _on_Start_pressed():
 
 
 func _on_About_pressed():
-	$PopupDialog.popup(Rect2( 0, 0, 0, 0 ))
+	$CenterContainer/Dialog.popup(Rect2( 0, 0, 0, 0 ))
 	pass # Replace with function body.
 
 
