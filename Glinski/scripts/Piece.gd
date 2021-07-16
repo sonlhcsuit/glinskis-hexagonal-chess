@@ -16,7 +16,7 @@ var resources:Dictionary = {
 	22:"res://sprites/king_b.tres"
 }
 
-var knight_set = [
+const knight_set = [
 	[5,1],
 	[0,2],
 	[1,3],
@@ -24,7 +24,7 @@ var knight_set = [
 	[3,5],
 	[4,0],
 ]
-var bishop_set = [
+const bishop_set = [
 	[0,1],
 	[0,5],
 	[2,1],
@@ -33,7 +33,7 @@ var bishop_set = [
 	[4,5]
 ]
 
-var rook_set = [0,1,2,3,4,5]
+const rook_set = [0,1,2,3,4,5]
 
 var _value:int = 0
 var _slot:int = 0
@@ -56,7 +56,7 @@ func get_slot()->int:
 	return self._slot
 	
 # moving pieces ultilities
-func get_neighbors_of(board_number: int) -> Array:
+static func get_neighbors_of(board_number: int) -> Array:
 	if not (0 < board_number and board_number < 71):
 		assert(false,"Board number are not valid, must in the range [1,70]")
 	var result = [board_number,board_number,board_number,board_number,board_number,board_number ]
@@ -110,7 +110,7 @@ func get_neighbors_of(board_number: int) -> Array:
 
 # using this function for checking the team (white or black) able to move pieces
 # to empty slot or occupied (white can attack black, vice versa)
-func legal_slot(slot:int,state:Array,white:bool)->bool:
+static func legal_slot(slot:int,state:Array,white:bool)->bool:
 	if slot == 0:
 		return false
 	if state[slot - 1] == 0:
@@ -122,9 +122,9 @@ func legal_slot(slot:int,state:Array,white:bool)->bool:
 #		must be white piece
 		return state[slot -1 ] > 8 and state[slot -1 ] < 16
 
-func pawn_move(slot_value:int,state:Array,white:bool)-> Array:
+static func pawn_move(slot_index:int,state:Array,white:bool)-> Array:
 	var moves = []
-	var neighbors = get_neighbors_of(slot_value)
+	var neighbors = get_neighbors_of(slot_index)
 	if white:
 		var top = neighbors[0]
 		var top_left = neighbors[1]
@@ -147,9 +147,9 @@ func pawn_move(slot_value:int,state:Array,white:bool)-> Array:
 			moves.append(bottom_right)
 	return moves
 
-func knight_move(slot_value:int,state:Array,white:bool)-> Array:
+static func knight_move(slot_index:int,state:Array,white:bool)-> Array:
 	var moves = []
-	var neighbors = get_neighbors_of(slot_value)
+	var neighbors = get_neighbors_of(slot_index)
 	for i in range(6):
 		if neighbors[i] != 0:
 			var n = get_neighbors_of(neighbors[i])[i]
@@ -163,10 +163,10 @@ func knight_move(slot_value:int,state:Array,white:bool)-> Array:
 					moves.append(move_2)
 	return moves
 
-func bishop_move(slot_value:int,state:Array,white:bool)-> Array:
+static func bishop_move(slot_index:int,state:Array,white:bool)-> Array:
 	var moves = []
 	for direction in bishop_set:
-		var slot = slot_value
+		var slot = slot_index
 		while true:
 			var neighbors = get_neighbors_of(slot) 
 			if neighbors[direction[0]] != 0 :
@@ -182,10 +182,10 @@ func bishop_move(slot_value:int,state:Array,white:bool)-> Array:
 				break
 	return moves
 
-func rook_move(slot_value:int,state:Array,white:bool)-> Array:
+static func rook_move(slot_index:int,state:Array,white:bool)-> Array:
 	var moves = []
-	for direction in self.rook_set:
-		var slot = slot_value
+	for direction in rook_set:
+		var slot = slot_index
 		while true:
 			var neighbors = get_neighbors_of(slot) 
 			var move = neighbors[direction]
@@ -198,21 +198,22 @@ func rook_move(slot_value:int,state:Array,white:bool)-> Array:
 				break
 	return moves
 	
-func queen_move(slot_value:int,state:Array,white:bool)-> Array:
-	return self.bishop_move(slot_value,state,white) + self.rook_move(slot_value,state,white)
+static func queen_move(slot_index:int,state:Array,white:bool)-> Array:
+	return bishop_move(slot_index,state,white) + rook_move(slot_index,state,white)
 
-func king_move(slot_value:int,state:Array,white:bool)-> Array:
+static func king_move(slot_index:int,state:Array,white:bool)-> Array:
 	var moves = []
-	var neighbors = get_neighbors_of(slot_value)
+	var neighbors = get_neighbors_of(slot_index)
 	for neighbor in neighbors:
 		if legal_slot(neighbor,state,white):
 			moves.append(neighbor)
 	return moves
+	
 
-func next_move_of_piece(slot_value:int,state:Array) -> Array:
-	if len(state) != 70 or slot_value > 70 :
+static func next_move_of_piece(slot_index:int,state:Array) -> Array:
+	if len(state) != 70 or slot_index > 70 :
 		assert(false,"State of the game is not valid")
-	var piece_value = state[slot_value -1]
+	var piece_value = state[slot_index -1]
 	var next_moves:Array = []
 	var white = true
 	var moves = []
@@ -224,22 +225,22 @@ func next_move_of_piece(slot_value:int,state:Array) -> Array:
 		piece_value = piece_value - 8
 	if piece_value == 1:
 #		pawn
-		moves = self.pawn_move(slot_value,state,white)
+		moves = pawn_move(slot_index,state,white)
 	elif piece_value == 2:
 #		knight
-		moves = knight_move(slot_value,state,white)
+		moves = knight_move(slot_index,state,white)
 	elif piece_value == 3:
 #		bishop
-		moves = bishop_move(slot_value,state,white)
+		moves = bishop_move(slot_index,state,white)
 	elif piece_value == 4:
 #		rook 
-		moves = self.rook_move(slot_value,state,white)
+		moves = rook_move(slot_index,state,white)
 	elif piece_value == 5:
 #		queen
-		moves = self.queen_move(slot_value,state,white)
+		moves = queen_move(slot_index,state,white)
 	elif piece_value == 6:
 #		king
-		moves = self.king_move(slot_value,state,white)
+		moves = king_move(slot_index,state,white)
 	return moves
 
 func load_resources():

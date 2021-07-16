@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/chess-board-70.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Board.gd" type="Script" id=2]
 
-[node name="BoardImage" type="TextureRect"]
+[node name="Board" type="TextureRect"]
 anchor_left = 0.000979614
 anchor_top = 6.10352e-08
 anchor_right = 0.000979614
@@ -12,6 +13,7 @@ margin_top = -6.10948e-05
 margin_right = 672.0
 margin_bottom = 816.0
 texture = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

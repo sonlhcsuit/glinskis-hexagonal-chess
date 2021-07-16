@@ -1,9 +1,11 @@
 extends TextureRect
 class_name Board
+
 var default_state:Array = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var state = [0, 0, 0, 0, 0, 0, 12, 9, 0, 0, 0, 17, 20, 10, 0, 9, 0, 0, 17, 0, 18, 13, 0, 0, 9, 0, 17, 0, 0, 21, 11, 11, 11, 0, 9, 17, 0, 19, 19, 19, 14, 0, 0, 9, 0, 17, 0, 0, 22, 10, 0, 9, 0, 0, 17, 0, 18, 12, 9, 0, 0, 0, 17, 20, 0, 0, 0, 0, 0, 0]
 var available_moves = []
 var Piece = load("res://scripts/Piece.gd")
+var Slot = load("res://scripts/Slot.gd")
 # allow white or black can move
 var turn:bool = true
 ## columns offets
@@ -118,8 +120,6 @@ func render_state(state:Array)->void:
 # 0 mean the game has a bug (3 4 king?) 1 mean game are normal
 # 2 mean white win (no black king) 3 mean black win (no white king)
 func is_game_finish(state:Array)->int:
-	var king = 14 
-	var KING = 22
 	var sum = 0
 	for i in state:
 		if i == 14 or i == 22:

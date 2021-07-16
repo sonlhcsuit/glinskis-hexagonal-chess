@@ -3,6 +3,32 @@ extends Node2D
 #				Setting up board pieces                #
 #########################################################
 
+var is_autoplay:bool = true
+var level:int = 1
+
+func get_board():
+	return get_node("/root/Main/CenterContainer/Board")
+	
+func random_move()->Array:
+	var board = get_board()
+	var state = board.get_state()
+	var moves = []
+	var log_String = String(state)
+	for slot_index in range(1,71):
+		var slot_value = state[slot_index-1]
+		if slot_value > 16:
+			var next_moves = Piece.next_move_of_piece(slot_index,state)
+			for m in next_moves:
+				moves.append([slot_index,m])
+	var l = len(moves)
+	var rng = RandomNumberGenerator.new()
+	return moves[rng.randi_range(0,l-1)]
+func _process(delta):
+	var board = get_board()
+	if is_autoplay and not board.is_white_turn():
+		var move = random_move()
+		board.move(move[0],move[1])
+	
 ##+++++++++++++SHOW NEXT POSSIBLE MOVE AS RED DOT++++++#
 #func set_moveable(new_moveable:Array)->void:
 #	self.moveable = new_moveable
