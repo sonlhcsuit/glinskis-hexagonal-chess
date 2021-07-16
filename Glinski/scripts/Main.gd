@@ -6,6 +6,8 @@ extends Node2D
 var is_autoplay:bool = true
 var level:int = 1
 
+signal back_to_intro
+
 func get_board():
 	return get_node("/root/Main/CenterContainer/Board")
 	
@@ -23,11 +25,13 @@ func random_move()->Array:
 	var l = len(moves)
 	var rng = RandomNumberGenerator.new()
 	return moves[rng.randi_range(0,l-1)]
+	
 func _process(delta):
-	var board = get_board()
-	if is_autoplay and not board.is_white_turn():
-		var move = random_move()
-		board.move(move[0],move[1])
+	pass
+#	var board = get_board()
+#	if is_autoplay and not board.is_white_turn():
+#		var move = random_move()
+#		board.move(move[0],move[1])
 	
 ##+++++++++++++SHOW NEXT POSSIBLE MOVE AS RED DOT++++++#
 #func set_moveable(new_moveable:Array)->void:
@@ -337,4 +341,5 @@ func _process(delta):
 
 
 func _on_BackButton_pressed():
-	get_tree().change_scene("res://Scenes/Intro.tscn")
+	$CenterContainer/Board.log_message("Clicked")
+	emit_signal("back_to_intro")

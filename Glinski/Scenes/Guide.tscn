@@ -51,7 +51,6 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CenterContainer/PopupDialog"]
-visible = false
 margin_right = 300.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 300, 50 )
@@ -60,7 +59,6 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="CenterContainer/PopupDialog"]
-visible = false
 rect_min_size = Vector2( 300, 50 )
 theme = ExtResource( 6 )
 text = "DETAIL RULES"
@@ -72,7 +70,6 @@ __meta__ = {
 }
 
 [node name="content" type="Label" parent="CenterContainer/PopupDialog"]
-visible = false
 margin_left = -0.889832
 margin_top = 0.889832
 margin_right = 299.11
@@ -89,7 +86,6 @@ __meta__ = {
 }
 
 [node name="ChessPieces" type="VBoxContainer" parent="CenterContainer"]
-visible = false
 margin_left = 350.0
 margin_top = 350.0
 margin_right = 650.0
@@ -155,7 +151,7 @@ margin_top = 197.0
 margin_right = 300.0
 margin_bottom = 223.0
 custom_fonts/font = SubResource( 1 )
-text = "KING"
+text = "queen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -165,7 +161,7 @@ margin_top = 227.0
 margin_right = 300.0
 margin_bottom = 253.0
 custom_fonts/font = SubResource( 1 )
-text = "QUEEN"
+text = "king"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -1,7 +1,6 @@
 extends Node2D
 
 func load_photo(path:String):
-	$ColorRect.hide()
 	var texture:AtlasTexture = load(path)
 	$CenterContainer/GuidePhoto.texture = texture
 	$CenterContainer/GuidePhoto.show()
@@ -39,5 +38,4 @@ func _on_DETAIL_pressed():
 
 func hide_photo():
 	$CenterContainer/GuidePhoto.texture = null
-	$ColorRect.show()
 

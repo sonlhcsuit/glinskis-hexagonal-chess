@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://robotTheme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/Setting.gd" type="Script" id=2]
+[ext_resource path="res://assets/left-arrow.png" type="Texture" id=3]
 
 [node name="Setting" type="Node2D"]
 script = ExtResource( 2 )
@@ -136,5 +137,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 50.0
+margin_top = 49.1515
+margin_right = 114.0
+margin_bottom = 81.1515
+texture_normal = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/Mode" to="." method="_on_Mode_item_selected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
