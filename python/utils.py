@@ -120,10 +120,10 @@ def encode_notation(board: tuple) -> str:
 
 # "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
 # "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
-notation = encode_notation(default_board)
-print(notation)
-print(default_board)
-print(decode_notation(notation))
-#
-for i in range(1, 71):
-    print(f"{i} {neighbor(i)}")
+# notation = encode_notation(default_board)
+# print(notation)
+# print(default_board)
+# print(decode_notation(notation))
+# #
+# for i in range(1, 71):
+#     print(f"{i} {neighbor(i)}")

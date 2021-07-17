@@ -1,4 +1,4 @@
-from piece import *
+from Piece import *
 
 default_state = {
     "white": {
