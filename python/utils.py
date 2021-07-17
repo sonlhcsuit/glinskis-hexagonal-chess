@@ -1,3 +1,5 @@
+
+
 def neighbor(board_number: int) -> tuple:
     if not (0 < board_number < 71):
         raise Exception("Board number are not valid, must in the range [1,70]")

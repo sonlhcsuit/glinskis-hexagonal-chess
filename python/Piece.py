@@ -15,7 +15,7 @@ class Piece:
     IMPACT = impact
 
     KNIGHT_PATTERN = pattern["KNIGHT"]
-    BISHOP_PATTERN = pattern["BISHPOP"]
+    BISHOP_PATTERN = pattern["BISHOP"]
     ROOK_PATTERN = pattern["ROOK"]
 
     def __init__(self, value, slot):
@@ -72,7 +72,7 @@ class Piece:
         """
         Generate available moves for the piece of the board base on state
         :param slot: slot of the board, must be in range [1,70]
-        :param state: state of the game, or the boad
+        :param state: state of the game, or the board
         :return:
         """
         if len(state) != 70 or slot > 70 or slot < 1:
