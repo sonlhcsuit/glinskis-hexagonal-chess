@@ -17,14 +17,14 @@ class Board:
 
     def notation_after_move(self, from_slot, to_slot):
         state: np.ndarray = self.state.copy()
-        state[to_slot] = state[from_slot]
-        state[from_slot] = 0
+        state[to_slot - 1] = state[from_slot - 1]
+        state[from_slot - 1] = 0
         return Board.encode(state)
 
     def state_after_move(self, from_slot, to_slot) -> np.ndarray:
         state: np.ndarray = self.state.copy()
-        state[to_slot] = state[from_slot]
-        state[from_slot] = 0
+        state[to_slot - 1] = state[from_slot - 1]
+        state[from_slot - 1] = 0
         return state
 
     def evaluation(self, is_coefficient: bool = False):
@@ -57,7 +57,7 @@ class Board:
                 return 0
 
             func = np.vectorize(strategic_value_with_coefficient)
-            result = func(self.state[self.state != 0], indexes)
+            result = func(self.state[self.state != 0], indexes[0])
             evaluation_value = sum(result)
         else:
             strategic_value = np.vectorize(Piece.strategic_value_of)
@@ -65,6 +65,23 @@ class Board:
             evaluation_value = sum(strategic_value(pieces))
 
         return evaluation_value
+
+    def next_moves(self, is_white: bool = True) -> np.ndarray:
+        indexes = None
+        if is_white:
+            indexes = np.where(self != 0 and self.state < 16)
+        else:
+            indexes = np.where(self.state > 16)
+
+        def next_move_of_piece(index):
+            moves = Piece.get_next_moves_of(index + 1, self.state)
+            v = np.array([[index + 1, m] for m in moves])
+            return v.flatten()
+
+        moves: np.ndarray = np.array([next_move_of_piece(index) for index in indexes[0]], dtype=object)
+        moves: np.ndarray = np.concatenate(moves)
+        moves: np.ndarray = np.reshape(moves, (-1, 2))
+        return moves.astype(int)
 
     @staticmethod
     def encode(state: np.ndarray) -> str:
@@ -84,4 +101,9 @@ class Board:
 
 
 board = Board.from_notation(default_notation)
-print(board.evaluation(True))
+
+next_moves = board.next_moves()
+for move in next_moves:
+    notation = board.notation_after_move(move[0], move[1])
+    print(move)
+    print(Board.from_notation(notation).evaluation(True))
