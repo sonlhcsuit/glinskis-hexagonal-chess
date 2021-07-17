@@ -1,10 +1,11 @@
-from chessBoard import *
+from Board import *
 
 SIMPLE = 'SIMPLE'
 COMPLEX = 'COMPLEX'
 board = ChessBoard()
 
 # evaluation function
+
 pawn_pos_white = {
     "A": [0, 1, 0.5, 0.75, -1, -2],
     "B": [0, 0, 0, 0.5, 0.75, -1, -2],
@@ -16,6 +17,7 @@ pawn_pos_white = {
     "H": [0, 0, 0, 0.5, 0.75, -1, -2],
     "I": [0, 1, 0.5, 0.75, -1, -2]
 }
+
 pawn_pos_black = {
     "A": [-2, -1, 0.75, 0.5, 1, 0],
     "B": [-2, -1, 0.75, 0.5, 0, 0, 0],
