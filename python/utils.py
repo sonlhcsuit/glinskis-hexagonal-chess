@@ -1,5 +1,3 @@
-
-
 def neighbor(board_number: int) -> tuple:
     if not (0 < board_number < 71):
         raise Exception("Board number are not valid, must in the range [1,70]")
@@ -39,7 +37,7 @@ def neighbor(board_number: int) -> tuple:
 
 
 # lower case is white & upper case is black
-
+default_notation = "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
 default_board = tuple([
     0, 0, 0, 0, 0, 0,  # a
     12, 9, 0, 0, 0, 17, 20,  # b
@@ -63,25 +61,6 @@ KING = 6
 WHITE = 8
 BLACK = 16
 
-default_state = {
-    "white": {
-        "pawn": ['B2', 'C3', 'D4', 'E5', 'F4', 'G3', 'H2'],
-        "knight": ['C1', 'G1'],
-        "bishop": ['E1', 'E2', 'E3'],
-        "rook": ['B1', 'H1'],
-        "queen": ['D1'],
-        "king": ['F1'],
-    },
-    "black": {
-        "pawn": ['B6', 'C6', 'D6', 'E6', 'F6', 'G6', 'H6'],
-        "knight": ['C8', 'G8'],
-        "bishop": ['E8', 'E9', 'E10'],
-        "rook": ['B7', 'H7'],
-        "queen": ['D9'],
-        "king": ['F9'],
-    }
-}
-
 
 def decode_notation(notation: str) -> tuple:
     board = [0 for _ in range(70)]
@@ -97,7 +76,7 @@ def decode_notation(notation: str) -> tuple:
             empty_slot = ""
         elif char in PIECES:
             board[current_index] = 8 + PIECES.index(char) + 1
-            current_index +=1
+            current_index += 1
 
     return tuple(board)
 
@@ -120,12 +99,3 @@ def encode_notation(board: tuple) -> str:
 
     return notation
 
-# "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
-# "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
-# notation = encode_notation(default_board)
-# print(notation)
-# print(default_board)
-# print(decode_notation(notation))
-# #
-# for i in range(1, 71):
-#     print(f"{i} {neighbor(i)}")

@@ -13,7 +13,6 @@ class Piece:
     WHITE = 8
     BLACK = 16
     IMPACT = impact
-
     KNIGHT_PATTERN = pattern["KNIGHT"]
     BISHOP_PATTERN = pattern["BISHOP"]
     ROOK_PATTERN = pattern["ROOK"]
@@ -40,6 +39,12 @@ class Piece:
     def __str__(self):
         piece_names = ["pawn", "knight", "bishop", "rook", "queen", "king"]
         return f"{piece_names[self.value - 1]} at {self.slot} with {self.strategic_value()}"
+
+    @staticmethod
+    def strategic_value_of(piece_value):
+        if piece_value > 16:
+            return -1 * Piece.IMPACT[piece_value - 16 - 1]
+        return Piece.IMPACT[piece_value -8 - 1]
 
     @staticmethod
     def get_neighbors_of(slot):
