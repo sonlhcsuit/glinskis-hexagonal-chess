@@ -9,7 +9,7 @@ onready var scene = $Intro
 
 var setting = {
 	"difficulty":1,
-	"url":"https://59b5bddb55d0.ngrok.io/"
+	"url":"http://localhost:5000/"
 }
 func _ready():
 	connect_signal()

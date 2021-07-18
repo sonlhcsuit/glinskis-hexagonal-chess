@@ -1,7 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_ngrok import run_with_ngrok
 from algorithm import *
-import json
 
 app = Flask(__name__)
 
@@ -14,7 +12,6 @@ def index():
 
 @app.route("/minimax", methods=['POST'])
 def minimax_function():
-    print("asdasd")
     try:
         body = request.get_json()
         notation = body["notation"]
