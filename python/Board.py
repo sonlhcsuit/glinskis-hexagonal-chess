@@ -1,5 +1,3 @@
-import numpy as np
-
 from Piece import *
 from utils import encode_notation, decode_notation, default_notation
 from config import coefficient
@@ -31,7 +29,6 @@ class Board:
         evaluation_value = 0
         if is_coefficient:
             indexes = np.where(self.state != 0)
-
             def strategic_value_with_coefficient(piece, slot):
                 piece_value = piece - 16 if piece > 16 else piece - 8
                 if piece_value == Piece.PAWN:
@@ -83,6 +80,13 @@ class Board:
         moves: np.ndarray = np.reshape(moves, (-1, 2))
         return moves.astype(int)
 
+    def is_terminate(self) -> bool:
+        if self.state[self.state == 8 + 6].shape[0] == 0:
+            return True
+        if self.state[self.state == 16 + 6].shape[0] == 0:
+            return True
+        return False
+
     @staticmethod
     def encode(state: np.ndarray) -> str:
         return encode_notation(tuple(state))
@@ -99,11 +103,3 @@ class Board:
     def from_state(state: np.ndarray):
         return Board(tuple(state))
 
-
-board = Board.from_notation(default_notation)
-
-next_moves = board.next_moves()
-for move in next_moves:
-    notation = board.notation_after_move(move[0], move[1])
-    print(move)
-    print(Board.from_notation(notation).evaluation(True))

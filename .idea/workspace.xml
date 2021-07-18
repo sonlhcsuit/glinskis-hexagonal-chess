@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c2911e-2342-459b-8acc-90773ad813f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/python/algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/Board.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/Board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/runtime.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +78,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/Board.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/algorithm.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +136,8 @@
       <workItem from="1625926501031" duration="4227000" />
       <workItem from="1626074169290" duration="3821000" />
       <workItem from="1626455047040" duration="4000" />
-      <workItem from="1626504039274" duration="11655000" />
+      <workItem from="1626504039274" duration="12179000" />
+      <workItem from="1626582632606" duration="4121000" />
     </task>
     <servers />
   </component>
@@ -152,7 +157,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="board Coverage Results" MODIFIED="1626548975348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$dev.coverage" NAME="board Coverage Results" MODIFIED="1626549496056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$board.coverage" NAME="board Coverage Results" MODIFIED="1626586908888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/glinskis_hexagonal_chess$server.coverage" NAME="server Coverage Results" MODIFIED="1625716661305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Backend" />
   </component>
 </project>

@@ -82,7 +82,6 @@ def decode_notation(notation: str) -> tuple:
 
 
 def encode_notation(board: tuple) -> str:
-    print(len(board))
     if len(board) != 70:
         raise Exception("Board size is not valid")
     notation = ""
