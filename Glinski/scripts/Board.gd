@@ -43,6 +43,43 @@ func dialog(title:String,content:String)->void:
 	notification.get_node("content").text = content
 	notification.popup()
 
+func encode_notation(board: Array) -> String:
+	var PIECES = 'pnbrqk//PNBRQK//'
+	if len(board) != 70:
+		assert(false,"Board size is not valid")
+	var notation = ""
+	var empty_slot = 0
+	for i in range(len(board)):
+		var slot = board[i]
+		if slot == 0:
+			empty_slot += 1
+		else:
+			if empty_slot != 0:
+				notation = notation + String(empty_slot) + "_"
+				empty_slot = 0
+			notation = notation + String(empty_slot) + String(PIECES[slot - 8 - 1])
+	return notation
+
+
+func decode_notation(notation: String) -> Array:
+	var PIECES = 'pnbrqk//PNBRQK//'	
+	var board = []
+	for _i in range(0):
+		board.append(0)
+	var current_index = 0
+	var empty_slot = ""
+	for character in notation:
+		if character.is_valid_integer():
+			empty_slot += character
+		elif character == "_":
+			var num = int(empty_slot)
+			current_index = current_index + num
+			empty_slot = ""
+		elif character in PIECES:
+			board[current_index] = 8 + PIECES.index(character) + 1
+			current_index += 1
+	return board
+
 func log_message(message:String)->void:
 	$Label.text = message
 

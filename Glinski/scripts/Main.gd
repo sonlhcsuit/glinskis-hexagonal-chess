@@ -42,17 +42,40 @@ func _on_BackButton_pressed():
 	emit_signal("back_to_intro")
 
 func _process(delta):
-	$Label.text =String(self.setting)
 	var board = self.get_board()
-	if not board.is_white_turn() :
-		var move = random_move()
-		board.move(move[0],move[1])
+	if self.setting["difficulty"]!=null and not board.is_white_turn():
+		var notation= board.encode_notation(board.get_state())
+		$Label.text = notation
+		minimax(notation)
 	pass
 
 
+func minimax(notation):
+	var url = self.setting["url"] + "minimax"
+	$Label.text = url
+	var headers = ["Content-Type: application/json"]
+	$Request.request(url,headers,false,HTTPClient.METHOD_GET)
+#	$Request.request(url,headers,false,HTTPClient.METHOD_POST,JSON.print({
+#		"notation":notation
+#	}))
 
-
-
+#func _on_minimax_completed(result, response_code, headers, body):
+#	var json_response = JSON.parse(String(body.get_string_from_ascii()))
+#	if(json_response.error== OK):
+#		if(json_response.result.has('team')):
+#			var move:String = json_response.result["move"]
+#			var team = json_response.result["team"]
+#			var original = move.split("->")[0]
+#			var destination = move.split("->")[1]
+#			action_execute(team.to_lower(),original)
+#			action_execute(team.to_lower(),destination)
+#			whiteTurn=!whiteTurn
+#			blackTurn=!blackTurn
+#			$State.text = team
+#			check_win_and_next_move()
+#	else:
+#		pass
+#		$State.text = 'BUG'
 
 
 

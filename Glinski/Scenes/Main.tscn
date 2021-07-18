@@ -314,13 +314,15 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-visible = false
-margin_left = -2.6228
-margin_top = 250.914
-margin_right = 178.377
-margin_bottom = 628.914
+margin_left = 32.3478
+margin_top = 209.823
+margin_right = 213.348
+margin_bottom = 587.823
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Request" type="HTTPRequest" parent="."]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

@@ -5,45 +5,47 @@ from Piece import Piece
 from utils import default_notation
 import time
 
+
 # search algorithms
 # board is
-
-global selected_move
-
-
 def minimax(board: Board, depth=3, is_white=True):
-    global selected_move
-
     if depth == 0 or board.is_terminate():
-        return board.evaluation()
+        return board.evaluation(), []
+
     if is_white:
+        # white player is maximizing player
+
         value = -10000000000
         next_moves = board.next_moves(True)
+        move = None
+
         for next_move in next_moves:
-            temp_v = minimax(Board.from_notation(board.notation_after_move(next_move[0], next_move[1])), depth - 1,
-                             False)
-            if temp_v > value:
-                value = temp_v
-                selected_move = next_move
-        return value
+            temp_value, _ = minimax(Board.from_notation(board.notation_after_move(next_move[0], next_move[1])),
+                                    depth - 1, False)
+            if temp_value > value:
+                value = temp_value
+                move = next_move
+        return value, move
     else:
         # black player is minimizing player
         value = 10000000000
         next_moves = board.next_moves(False)
+        move = None
+
         for next_move in next_moves:
-            temp_v = minimax(Board.from_notation(board.notation_after_move(next_move[0], next_move[1])), depth - 1,
-                             True)
-            if temp_v < value:
-                value = temp_v
-                selected_move = next_move
-        return value
+            temp_value, _ = minimax(Board.from_notation(board.notation_after_move(next_move[0], next_move[1])),
+                                    depth - 1, True)
+            if temp_value < value:
+                value = temp_value
+                move = next_move
+        return value, move
 
 
 def time_running(func):
     t0 = time.process_time()
     print(f"Start time: {t0:.10f}")
     func()
-    # print(selected_move)
+
     t1 = time.process_time()
     print(f"Finish time: {t1:.10f}")
     print(f"Elapse time: {t1 - t0:.10f}")
@@ -54,13 +56,13 @@ def minimax_test():
     board = Board.from_notation(default_notation)
     value = minimax(board)
     print(value)
-    print(selected_move)
+
     # moves = list(board.next_moves(True))
     # for move in moves:
     #     print(Board.from_notation(board.notation_after_move(move[0], move[1])).evaluation())
 
 
-time_running(minimax_test)
+# time_running(minimax_test)
 
 ##minimax
 # def max_search(env, TEAM, evaluationFunc=material_evaluation):
