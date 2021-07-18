@@ -6,7 +6,7 @@ extends Node2D
 var setting:Dictionary ={}
 var is_autoplay:bool = true
 var level:int = 1
-
+var is_waiting = false
 signal open_setting
 signal start_game
 signal open_guide
@@ -43,40 +43,36 @@ func _on_BackButton_pressed():
 
 func _process(delta):
 	var board = self.get_board()
-	if self.setting["difficulty"]!=null and not board.is_white_turn():
+	if not is_waiting and self.setting["difficulty"] != null and not board.is_white_turn():
 		var notation= board.encode_notation(board.get_state())
-		$Label.text = notation
 		minimax(notation)
 	pass
 
+func _ready():
+	$Request.connect("request_completed", self, "_on_request_completed")
+	
 
 func minimax(notation):
 	var url = self.setting["url"] + "minimax"
-	$Label.text = url
 	var headers = ["Content-Type: application/json"]
-	$Request.request(url,headers,false,HTTPClient.METHOD_GET)
-#	$Request.request(url,headers,false,HTTPClient.METHOD_POST,JSON.print({
-#		"notation":notation
-#	}))
+	var data = {
+		"notation":notation
+	}
+	$Request.request(url,headers,false, HTTPClient.METHOD_POST,JSON.print(data))
+	self.is_waiting = true
 
-#func _on_minimax_completed(result, response_code, headers, body):
-#	var json_response = JSON.parse(String(body.get_string_from_ascii()))
-#	if(json_response.error== OK):
-#		if(json_response.result.has('team')):
-#			var move:String = json_response.result["move"]
-#			var team = json_response.result["team"]
-#			var original = move.split("->")[0]
-#			var destination = move.split("->")[1]
-#			action_execute(team.to_lower(),original)
-#			action_execute(team.to_lower(),destination)
-#			whiteTurn=!whiteTurn
-#			blackTurn=!blackTurn
-#			$State.text = team
-#			check_win_and_next_move()
-#	else:
-#		pass
-#		$State.text = 'BUG'
-
+func _on_request_completed(result, response_code, headers, body):
+	$Label.text = body.get_string_from_utf8()
+	var json = JSON.parse(body.get_string_from_utf8())
+	if json.error == OK:
+		var move = json.result["move"]
+		var board = get_board()
+		board.move(int(move[0]),int(move[1]))
+		self.is_waiting = false
+	else:
+#		$Label.text = "BUG"
+		pass
+		
 
 
 

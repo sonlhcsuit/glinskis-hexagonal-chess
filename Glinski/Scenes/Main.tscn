@@ -324,5 +324,6 @@ __meta__ = {
 }
 
 [node name="Request" type="HTTPRequest" parent="."]
+timeout = 20
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_ngrok import run_with_ngrok
 from algorithm import *
 import json
 
@@ -13,41 +14,20 @@ def index():
 
 @app.route("/minimax", methods=['POST'])
 def minimax_function():
-    print(request.get_json())
-    return {}, 200
-
-
-# @app.route('/move', methods=['post'])
-# def response_move():
-#     state = request.get_json()
-#     print(state)
-#     state = json.loads(state)
-#     temp_board = ChessBoard(state['board'])
-#     team = state['team']
-#     print(state)
-#     result = None
-#     if team.upper() == BLACK:
-#         result = minimaxAlphaBeta(temp_board, 4, -10000000000, 1000000000, BLACK, material_evaluation_with_coefficient)
-#     else:
-#         result = minimaxAlphaBeta(temp_board, 4, -10000000000, 1000000000, WHITE, material_evaluation_with_coefficient)
-#     print(result)
-#     return {
-#         "team": team,
-#         "move": result[0]}
-#
-#
-# @app.route('/checkwin', methods=['post'])
-# def evaluate_winning_status():
-#     state = request.get_json()
-#     state = json.loads(state)
-#     temp_board = ChessBoard(state['board'])
-#     result = temp_board.is_done()
-#     if (result == WHITE or result == BLACK):
-#         print({"winner": result})
-#         return {"winner": result}
-#     else:
-#         print({"winner": "not yet"})
-#         return {"winner": "not yet"}
+    print("asdasd")
+    try:
+        body = request.get_json()
+        notation = body["notation"]
+        board = Board.from_notation(notation)
+        value, move = minimax_prunning(board, -10000000, 100000000, 3, False)
+        result = {
+            "move": [int(move[0]), int(move[1])]
+        }
+        print(result)
+        return jsonify(result), 200
+    except Exception as e:
+        print(e)
+        return {"error": f"Internal server error, {e}"}, 500
 
 
 if __name__ == '__main__':
