@@ -1,3 +1,6 @@
+from config import PIECES
+
+
 def neighbor(board_number: int) -> tuple:
     if not (0 < board_number < 71):
         raise Exception("Board number are not valid, must in the range [1,70]")
@@ -36,32 +39,6 @@ def neighbor(board_number: int) -> tuple:
     return tuple(result)
 
 
-# lower case is white & upper case is black
-default_notation = "6_rp3_PRn1_p2_P1_Nq2_p1_P2_Qbbb1_pP1_BBBk2_p2_P1_Kn1_p3_PNrp3_PR"
-default_board = tuple([
-    0, 0, 0, 0, 0, 0,  # a
-    12, 9, 0, 0, 0, 17, 20,  # b
-    10, 0, 9, 0, 0, 17, 0, 18,  # c
-    13, 0, 0, 9, 0, 17, 0, 0, 21,  # d
-    11, 11, 11, 0, 9, 17, 0, 19, 19, 19,  # e
-    14, 0, 0, 9, 0, 17, 0, 0, 22,  # f
-    10, 0, 9, 0, 0, 17, 0, 18,  # g
-    12, 9, 0, 0, 0, 17, 20,  # h
-    0, 0, 0, 0, 0, 0,  # i
-])
-
-# pawn, knight , bishop rook queen king
-PIECES = 'pnbrqk//PNBRQK//'
-PAWN = 1
-KNIGHT = 2
-BISHOP = 3
-ROOK = 4
-QUEEN = 5
-KING = 6
-WHITE = 8
-BLACK = 16
-
-
 def decode_notation(notation: str) -> tuple:
     board = [0 for _ in range(70)]
     current_index = 0
@@ -97,4 +74,3 @@ def encode_notation(board: tuple) -> str:
             notation = f"{notation}{PIECES[slot - 8 - 1]}"
 
     return notation
-

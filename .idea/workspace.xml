@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7c2911e-2342-459b-8acc-90773ad813f7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/python/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +102,7 @@
       <option name="ADD_CONTENT_ROOTS" value="false" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/server.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -133,7 +139,7 @@
       <workItem from="1626074169290" duration="3821000" />
       <workItem from="1626455047040" duration="4000" />
       <workItem from="1626504039274" duration="12179000" />
-      <workItem from="1626582632606" duration="13659000" />
+      <workItem from="1626582632606" duration="14264000" />
     </task>
     <servers />
   </component>
