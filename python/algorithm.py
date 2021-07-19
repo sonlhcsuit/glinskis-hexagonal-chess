@@ -1,8 +1,5 @@
-import numpy as np
-
 from Board import Board
-from Piece import Piece
-from utils import default_notation
+from config import default_notation
 import time
 
 

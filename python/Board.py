@@ -1,6 +1,6 @@
 from Piece import *
-from utils import encode_notation, decode_notation, default_notation
-from config import coefficient
+from utils import encode_notation, decode_notation
+from config import coefficient,default_notation
 
 
 class Board:

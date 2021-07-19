@@ -58,6 +58,8 @@ func minimax(notation):
 	var data = {
 		"notation":notation
 	}
+	$Label.text = url
+	
 	$Request.request(url,headers,false, HTTPClient.METHOD_POST,JSON.print(data))
 	self.is_waiting = true
 

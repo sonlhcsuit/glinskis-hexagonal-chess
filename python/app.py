@@ -13,6 +13,9 @@ def index():
 @app.route("/minimax", methods=['POST'])
 def minimax_function():
     try:
+        t0 = time.process_time()
+        print(f"Start time: {t0:.10f}")
+
         body = request.get_json()
         notation = body["notation"]
         board = Board.from_notation(notation)
@@ -21,6 +24,9 @@ def minimax_function():
             "move": [int(move[0]), int(move[1])]
         }
         print(result)
+        t1 = time.process_time()
+        print(f"Elapse time: {t1 - t0:.10f}")
+        print("------------------------------------------------------------------------------------------")
         return jsonify(result), 200
     except Exception as e:
         print(e)

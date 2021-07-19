@@ -9,7 +9,7 @@ onready var scene = $Intro
 
 var setting = {
 	"difficulty":1,
-	"url":"http://localhost:5000/"
+	"url":"http://127.0.0.1:5000/"
 }
 func _ready():
 	connect_signal()
